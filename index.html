@@ -1,0 +1,1742 @@
+<title>TECHLAB IA</title>
+<div id="app"></div>
+<script type="text/plain" id="tpl">
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>         </style>
+<style>
+body{margin:0;background:#f1f3ff}
+a{color:#0f1646}a:hover{color:#5b21b6}
+button,input,select,textarea{font-family:inherit;font-size:16px}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #0B5CAD;outline-offset:2px}
+.glass{background:#ffffff;border:1px solid #d6dbf6;border-radius:0;box-sizing:border-box}
+.glass-soft{background:#f1f3ff;border:1px solid #e1e5fa;border-radius:0;box-sizing:border-box}
+.gbtn{min-height:48px;padding:0 20px;border-radius:0;border:1px solid #0f1646;background:transparent;color:#0f1646;font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.8px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .2s ease,color .2s ease}
+.gbtn:hover{background:#0f1646;color:#ffffff}
+.gbtn.on{background:#0f1646;color:#ffffff}
+.obtn{min-height:48px;padding:0 22px;border-radius:0;border:1px solid rgba(241,243,255,0.75);background:transparent;color:#f1f3ff;font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.8px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .2s ease,color .2s ease}
+.obtn:hover{background:#f1f3ff;color:#0b1030}
+.rbtn{min-height:52px;padding:0 26px;border-radius:0;border:1px solid #6d28d9;background:#6d28d9;color:#ffffff;font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:17px;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:background .2s ease}
+.rbtn:hover{background:#5b21b6;border-color:#5b21b6}
+.dbtn{min-height:52px;padding:0 26px;border-radius:0;border:1px solid #0f1646;background:#0f1646;color:#ffffff;font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:17px;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:background .2s ease}
+.dbtn:hover{background:#3a44a8}
+.nbtn{min-height:48px;padding:0 2px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:#cdd1f5;font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:16px;letter-spacing:2px;text-transform:uppercase;transition:color .2s ease,border-color .2s ease}
+.nbtn:hover{color:#ffffff}
+.nbtn.on{color:#ffffff;border-bottom-color:#a78bfa}
+.flink{background:transparent;border:0;padding:0;min-height:40px;color:#cdd1f5;text-align:left;font-size:16px}
+.flink:hover{color:#ffffff}
+.eyebrow{font-family:'Fredoka','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:2.5px;color:#4d5588;text-transform:uppercase}
+.title{margin:0;font-weight:300;font-stretch:125%;font-size:48px;line-height:1.05;letter-spacing:1px;text-transform:uppercase}
+.title span{font-weight:700}
+.code{font-family:'Fredoka',sans-serif;font-weight:700;letter-spacing:.5px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 8px;border-radius:2px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:.6px;white-space:nowrap;text-transform:uppercase}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:0;border:1px solid #0f1646;background:transparent;font-weight:600;font-size:15px}
+.lbl{font-weight:700}
+.muted{color:#4d5588}
+.inp{width:100%;box-sizing:border-box;min-height:48px;padding:12px 14px;border:1px solid #b4baea;border-radius:0;background:#ffffff;color:#0f1646;line-height:1.4}
+.inp:focus{border-color:#0B5CAD}
+textarea.inp{min-height:96px;resize:vertical}
+.inp:disabled{background:#f1f3ff;color:#4d5588}
+.err{color:#B3261E;font-weight:600}
+.ok{border:1px solid #1B6E3C;border-left:4px solid #1B6E3C;color:#1B6E3C;border-radius:0;padding:12px 16px;font-weight:600;background:#ffffff}
+.sep{border-top:1px solid #d6dbf6;padding-top:24px}
+details>summary{list-style:none;cursor:pointer}
+details>summary::-webkit-details-marker{display:none}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:wght@300..900&display=swap">
+<style>
+h1,h2,h3,.title,.gbtn,.obtn,.rbtn,.dbtn,.eyebrow{font-family:'Fredoka','Nunito',system-ui,sans-serif !important;font-stretch:normal !important}
+.gbtn,.obtn,.rbtn,.dbtn{letter-spacing:1.2px !important;font-weight:600 !important}
+svg{filter:drop-shadow(0 0 5px rgba(45,226,255,0.28))}
+button svg{filter:none}
+body{font-family:'Nunito',system-ui,sans-serif}
+body{background:linear-gradient(180deg,#f1f3ff 0%,#e9ecff 100%) fixed}
+.rbtn{background:linear-gradient(135deg,#6d28d9,#4338ca);border-color:#5b3fd6}
+.rbtn:hover{background:linear-gradient(135deg,#5b21b6,#3730a3);border-color:#5b21b6;box-shadow:0 0 0 1px rgba(34,228,255,.55),0 0 26px rgba(139,92,246,.55)}
+.dbtn{background:linear-gradient(135deg,#0f1646,#1e2a8a);border-color:#0f1646}
+.gbtn{border-color:#2b2f8f;color:#1a1f6e}
+.gbtn:hover,.gbtn.on{background:#1e2a8a;border-color:#1e2a8a;color:#ffffff}
+.obtn:hover{background:#f1f3ff;color:#0b1030}
+.glass{border-color:#d6dbf6;box-shadow:0 1px 2px rgba(15,22,70,0.05),0 10px 28px rgba(60,50,200,0.07)}
+.inp:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.22)}
+:focus-visible{outline-color:#22d3ee}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f1f3ff; font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #0f1646; font-size: 16px; line-height: 1.5; display: flex; flex-direction: column" data-canvas-width="1440" data-canvas-height="2600" data-document-role="page" data-label="TECHLAB IA | Site completo">
+
+<header style="background: linear-gradient(90deg, #0b1030 0%, #1a2070 55%, #3a1d96 100%); color: #f3f4ff; border-bottom: 1px solid #5a4cf0">
+<div style="max-width: 1320px; margin: 0 auto; padding: 0 28px; min-height: 80px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px; box-sizing: border-box">
+<button type="button" sc-camel-on-click="{{goInicio}}" aria-label="TECHLAB IA, página inicial" style="background: transparent; border: 0; color: #f1f3ff; display: flex; align-items: center; gap: 14px; padding: 8px 0; min-height: 48px">
+<svg aria-hidden="true" width="28" height="28" sc-camel-view-box="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="square"><path d="M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg>
+<span style="font-weight: 300; font-stretch: 125%; font-size: 22px; letter-spacing: 4px">TECHLAB<span style="font-weight: 800; color: #a78bfa"> IA</span></span>
+</button>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 4px 26px; margin-right: auto">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="4">
+<button type="button" class="{{n.cls}}" sc-camel-on-click="{{n.go}}" aria-current="{{n.current}}">{{n.label}}</button>
+</sc-for>
+</nav>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; padding: 12px 0">
+<button type="button" class="{{ctaMontar}}" sc-camel-on-click="{{goMontar}}">Montar PC</button>
+<button type="button" class="rbtn" sc-camel-on-click="{{goUpgrade}}" style="min-height: 48px">Upgrade</button>
+</div>
+</div>
+</header>
+
+<div role="note" style="background: #FFF3CD; border-bottom: 1px solid #E0A800; color: #5C4400; font-weight: 600; font-size: 15px">
+<div style="max-width: 1320px; margin: 0 auto; padding: 9px 28px; display: flex; gap: 10px; box-sizing: border-box">
+<span aria-hidden="true" style="font-weight: 900">(!)</span>
+<span>ATENÇÃO: todos os dados são FICTÍCIOS. Nenhum teste real foi executado.</span>
+</div>
+</div>
+
+<sc-if value="{{isInicio}}" hint-placeholder-val="{{ true }}">
+<section aria-label="Destaques" aria-roledescription="carrossel" style="background: radial-gradient(820px 420px at 88% 8%, rgba(139,92,246,0.55), transparent 62%), radial-gradient(640px 320px at 6% 100%, rgba(34,228,255,0.20), transparent 62%), linear-gradient(135deg, #0b1030 0%, #172080 52%, #3b1f9e 100%); color: #f3f4ff; overflow: hidden">
+<div style="max-width: 1320px; margin: 0 auto; padding: 72px 28px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; min-height: 440px">
+<div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 24px">
+<span class="eyebrow" style="color: #aab1ee"><span style="color: #a78bfa">◆</span> {{slide.eyebrow}}</span>
+<h1 style="margin: 0; font-weight: 300; font-stretch: 125%; font-size: 64px; line-height: 1.02; text-transform: uppercase; letter-spacing: 1px">{{slide.t1}} <span style="font-weight: 800; color: #a78bfa">{{slide.t2}}</span></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #cdd1f5; max-width: 520px">{{slide.txt}}</p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<button type="button" class="rbtn" sc-camel-on-click="{{slide.go}}">{{slide.cta}}
+<svg aria-hidden="true" width="22" height="14" sc-camel-view-box="0 0 22 14" fill="none" stroke="#ffffff" stroke-width="1.6"><path d="M0 7h20M14 1l6 6-6 6"></path></svg>
+</button>
+<button type="button" class="obtn" sc-camel-on-click="{{slide.go2}}" style="min-height: 52px">{{slide.cta2}}</button>
+</div>
+</div>
+<div aria-hidden="true" style="flex: 1 1 420px; display: flex; justify-content: center">
+<sc-if value="{{isS0}}" hint-placeholder-val="{{ true }}">
+<svg stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" width="520" height="400" sc-camel-view-box="0 0 520 400" fill="none" style="max-width: 100%; height: auto">
+<rect x="40" y="30" width="440" height="340" stroke="#8f98f0" stroke-width="2.6"></rect>
+<rect x="60" y="50" width="400" height="300" stroke="#5c67d6" stroke-width="2.0"></rect>
+<rect x="200" y="90" width="110" height="110" stroke="#2de2ff" stroke-width="3.4"></rect>
+<rect x="222" y="112" width="66" height="66" stroke="#2de2ff" stroke-width="2.0"></rect>
+<path d="M210 90v-14M230 90v-14M250 90v-14M270 90v-14M290 90v-14M210 200v14M230 200v14M250 200v14M270 200v14M290 200v14M200 105h-14M200 125h-14M200 145h-14M200 165h-14M200 185h-14M310 105h14M310 125h14M310 145h14M310 165h14M310 185h14" stroke="#2de2ff" stroke-width="2.0"></path>
+<rect x="350" y="80" width="12" height="150" stroke="#eef0ff" stroke-width="2.6"></rect>
+<rect x="372" y="80" width="12" height="150" stroke="#eef0ff" stroke-width="2.6"></rect>
+<rect x="394" y="80" width="12" height="150" stroke="#8f98f0" stroke-width="2.6"></rect>
+<rect x="416" y="80" width="12" height="150" stroke="#8f98f0" stroke-width="2.6"></rect>
+<rect x="90" y="250" width="300" height="16" stroke="#eef0ff" stroke-width="2.6"></rect>
+<rect x="90" y="292" width="300" height="16" stroke="#8f98f0" stroke-width="2.6"></rect>
+<rect x="90" y="90" width="80" height="60" stroke="#8f98f0" stroke-width="2.6"></rect>
+<circle cx="110" cy="190" r="14" stroke="#8f98f0" stroke-width="2.6"></circle>
+<circle cx="150" cy="190" r="14" stroke="#8f98f0" stroke-width="2.6"></circle>
+<rect x="410" y="270" width="40" height="60" stroke="#8f98f0" stroke-width="2.6"></rect>
+<path d="M255 214v36M310 145h40M170 120h30" stroke="#8f98f0" stroke-width="2.0" stroke-dasharray="4 4"></path>
+<text x="40" y="392" fill="#8f98f0" font-family="Fredoka, sans-serif" font-size="15" letter-spacing="2">PLACA-MÃE · VISTA SUPERIOR</text>
+</svg>
+</sc-if>
+<sc-if value="{{isS1}}" hint-placeholder-val="{{ false }}">
+<svg stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" width="520" height="400" sc-camel-view-box="0 0 520 400" fill="none" style="max-width: 100%; height: auto">
+<path d="M90 90h340v200H90z" stroke="#8f98f0" stroke-width="2.6"></path>
+<path d="M60 290h400l-24 30H84z" stroke="#8f98f0" stroke-width="2.6"></path>
+<rect x="150" y="150" width="220" height="40" stroke="#eef0ff" stroke-width="2.6"></rect>
+<path d="M165 190v12M185 190v12M205 190v12M225 190v12M245 190v12M275 190v12M295 190v12M315 190v12M335 190v12M355 190v12" stroke="#eef0ff" stroke-width="2.2"></path>
+<rect x="170" y="160" width="30" height="20" stroke="#eef0ff" stroke-width="2.0"></rect>
+<rect x="215" y="160" width="30" height="20" stroke="#eef0ff" stroke-width="2.0"></rect>
+<rect x="275" y="160" width="30" height="20" stroke="#eef0ff" stroke-width="2.0"></rect>
+<rect x="320" y="160" width="30" height="20" stroke="#eef0ff" stroke-width="2.0"></rect>
+<rect x="150" y="226" width="220" height="40" stroke="#2de2ff" stroke-width="3.4"></rect>
+<path d="M260 140V40M224 76l36-36 36 36" stroke="#2de2ff" stroke-width="3.4"></path>
+<text x="378" y="176" fill="#c9cfff" font-family="Fredoka, sans-serif" font-size="16" letter-spacing="2">8 GB</text>
+<text x="378" y="252" fill="#2de2ff" font-family="Fredoka, sans-serif" font-size="16" letter-spacing="2">+ 8 GB</text>
+<text x="60" y="360" fill="#8f98f0" font-family="Fredoka, sans-serif" font-size="15" letter-spacing="2">NOTEBOOK · SEGUNDO SLOT DE MEMÓRIA</text>
+</svg>
+</sc-if>
+<sc-if value="{{isS2}}" hint-placeholder-val="{{ false }}">
+<svg stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" width="520" height="400" sc-camel-view-box="0 0 520 400" fill="none" style="max-width: 100%; height: auto">
+<rect x="120" y="30" width="280" height="340" stroke="#8f98f0" stroke-width="2.6"></rect>
+<rect x="210" y="18" width="100" height="26" stroke="#eef0ff" stroke-width="2.6"></rect>
+<path d="M160 90h200M160 110h140" stroke="#eef0ff" stroke-width="2.6"></path>
+<circle cx="170" cy="170" r="7" stroke="#2de2ff" stroke-width="3.4"></circle>
+<circle cx="170" cy="220" r="7" stroke="#2de2ff" stroke-width="3.4"></circle>
+<circle cx="170" cy="270" r="7" stroke="#2de2ff" stroke-width="3.4"></circle>
+<circle cx="170" cy="320" r="7" stroke="#8f98f0" stroke-width="2.6"></circle>
+<path d="M170 177v36M170 227v36M170 277v36" stroke="#8f98f0" stroke-width="2.0"></path>
+<path d="M195 170h150M195 220h120M195 270h160M195 320h90" stroke="#8f98f0" stroke-width="2.6"></path>
+<path d="M370 214l8 8 16-18" stroke="#2de2ff" stroke-width="3.4"></path>
+<text x="120" y="392" fill="#8f98f0" font-family="Fredoka, sans-serif" font-size="15" letter-spacing="2">ORDEM DE SERVIÇO · HISTÓRICO</text>
+</svg>
+</sc-if>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; border-top: 1px solid #3a44a8; padding-top: 18px">
+<span class="code" style="font-size: 18px; color: #aab1ee; letter-spacing: 2px">{{slideNum}}</span>
+<div role="group" aria-label="Escolher destaque" style="display: flex; gap: 10px; flex: 1 1 200px">
+<sc-for list="{{dots}}" as="x" hint-placeholder-count="3">
+<button type="button" aria-label="{{x.label}}" aria-current="{{x.cur}}" sc-camel-on-click="{{x.go}}" style="flex: 0 1 120px; height: 44px; background: transparent; border: 0; padding: 0; display: flex; align-items: center">
+<span style="display: block; width: 100%; height: 2px; background: {{x.c}}"></span>
+</button>
+</sc-for>
+</div>
+<button type="button" class="obtn" sc-camel-on-click="{{prevSlide}}" aria-label="Destaque anterior" style="width: 48px; padding: 0">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"></path></svg>
+</button>
+<button type="button" class="obtn" sc-camel-on-click="{{nextSlide}}" aria-label="Próximo destaque" style="width: 48px; padding: 0">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"></path></svg>
+</button>
+</div>
+</div>
+</section>
+</sc-if>
+
+<div style="flex: 1; width: 100%; max-width: 1320px; margin: 0 auto; padding: 56px 28px 96px; display: flex; flex-direction: column; gap: 32px; box-sizing: border-box">
+
+<sc-if value="{{isInicio}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 80px">
+<section style="display: flex; flex-wrap: wrap; gap: 32px 72px; align-items: flex-start">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 16px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Bem-vindo</span>
+<h2 class="title" style="font-size: 44px">Bem-vindo à <span style="color: #6d28d9">TECHLAB IA</span></h2>
+</div>
+<div style="flex: 1.2 1 440px; display: flex; flex-direction: column; gap: 32px">
+<p style="margin: 0; font-size: 19px; line-height: 1.65; color: #3f4ab0">Oficina digital de treino para alunos de montagem e manutenção de computadores. O computador chega, é cadastrado, ganha uma ordem de serviço, passa por diagnóstico com testes seguros e sai com relatório técnico. Aqui também dá para montar uma máquina nova ou planejar o upgrade de uma que já existe.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+<div style="border-left: 1px solid #b4baea; padding-left: 16px; display: flex; flex-direction: column; gap: 6px">
+<span class="code" style="font-size: 48px; line-height: 1">{{s.n}}</span>
+<span class="eyebrow" style="font-size: 13px">{{s.l}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid #b4baea; padding-bottom: 18px">
+<h2 class="title" style="font-size: 36px">Explore</h2>
+<span class="eyebrow">Quatro frentes da oficina</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+<article class="glass" style="display: flex; flex-direction: column">
+<div style="background: #0b1030; height: 190px; display: flex; align-items: center; justify-content: center; position: relative">
+<span class="code" style="position: absolute; top: 16px; left: 18px; color: #aab1ee; font-size: 15px; letter-spacing: 2px">{{c.n}}</span>
+<svg aria-hidden="true" width="96" height="96" sc-camel-view-box="0 0 24 24" fill="none" stroke="#c5c9f2" stroke-width="0.9" stroke-linecap="square" stroke-linejoin="miter"><path d="{{c.icon}}"></path></svg>
+<span style="position: absolute; bottom: 0; left: 0; width: 64px; height: 3px; background: #6d28d9"></span>
+</div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1">
+<span class="eyebrow" style="font-size: 13px">{{c.cat}}</span>
+<h3 style="margin: 0; font-weight: 400; font-stretch: 125%; font-size: 22px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.5px">{{c.t}}</h3>
+<p style="margin: 0; color: #4d5588">{{c.d}}</p>
+<button type="button" class="gbtn" sc-camel-on-click="{{c.go}}" style="margin-top: auto; align-self: flex-start">Explorar
+<svg aria-hidden="true" width="20" height="12" sc-camel-view-box="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h20M14 1l6 6-6 6"></path></svg>
+</button>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid #0f1646; padding-bottom: 18px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Em andamento</span>
+<h2 class="title" style="font-size: 36px">Na bancada</h2>
+</div>
+<button type="button" class="gbtn" sc-camel-on-click="{{goOrdens}}">Ver todas as ordens</button>
+</div>
+<sc-for list="{{bancada}}" as="b" hint-placeholder-count="5">
+<button type="button" sc-camel-on-click="{{b.pick}}" style="width: 100%; background: transparent; border: 0; border-bottom: 1px solid #d6dbf6; padding: 22px 4px; display: flex; flex-wrap: wrap; gap: 14px 32px; align-items: center; text-align: left; color: #0f1646; min-height: 48px">
+<span class="code" style="font-size: 30px; line-height: 1; flex: 0 0 96px">{{b.numero}}</span>
+<div style="flex: 2 1 260px; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<span style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px">{{b.equip}}</span>
+<span class="muted" style="font-size: 15px">{{b.relato}}</span>
+</div>
+<div style="flex: 0 1 110px; display: flex; flex-direction: column"><span class="eyebrow" style="font-size: 12px">Tipo</span><span>{{b.tipo}}</span></div>
+<div style="flex: 0 1 110px; display: flex; flex-direction: column"><span class="eyebrow" style="font-size: 12px">Prioridade</span><span>{{b.prioridade}}</span></div>
+<div style="flex: 0 1 110px; display: flex; flex-direction: column"><span class="eyebrow" style="font-size: 12px">Entrada</span><span>{{b.entrada}}</span></div>
+<span class="chip" style="background: {{b.s.bg}}; color: {{b.s.fg}}; border: 1px solid {{b.s.bd}}">
+<svg aria-hidden="true" width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{b.s.fg}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{b.s.icon}}"></path></svg>
+{{b.situacao}}
+</span>
+<span class="eyebrow" style="color: #5b21b6; font-size: 14px; margin-left: auto">Ver ordem →</span>
+</button>
+</sc-for>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{isOrdens}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Da bancada ao relatório</span>
+<h1 class="title">Ordens de <span style="color: #6d28d9">serviço</span></h1>
+<span class="muted">{{resumo}}</span>
+</div>
+<button type="button" class="rbtn" sc-camel-on-click="{{goNova}}">
+<svg aria-hidden="true" width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+NOVA ORDEM
+</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="6">
+<button type="button" class="glass" sc-camel-on-click="{{t.pick}}" aria-pressed="{{t.on}}" style="border-radius: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-align: left; outline: {{t.ring}}; outline-offset: 0; transition: transform .18s ease">
+<span class="code" style="font-size: 40px; line-height: 1">{{t.n}}</span>
+<span class="chip" style="align-self: flex-start; background: {{t.bg}}; color: {{t.fg}}; border: 1px solid {{t.cbd}}">
+<svg aria-hidden="true" width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{t.fg}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{t.icon}}"></path></svg>
+{{t.label}}
+</span>
+</button>
+</sc-for>
+</div>
+
+<div class="glass" style="border-radius: 24px; padding: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end">
+<div style="flex: 3 1 260px; display: flex; flex-direction: column; gap: 6px">
+<label for="busca" class="lbl">Buscar</label>
+<input id="busca" class="inp" type="text" value="{{busca}}" sc-camel-on-change="{{onBusca}}" placeholder="Número, cliente, técnico, equipamento ou palavra do relato">
+</div>
+<div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 6px">
+<label for="fsit" class="lbl">Situação</label>
+<sc-raw-select id="fsit" class="inp" value="{{fSit}}" sc-camel-on-change="{{onFSit}}">
+<option value="Todas">Todas</option>
+<sc-for list="{{sitNomes}}" as="s"><option value="{{s}}">{{s}}</option></sc-for>
+</sc-raw-select>
+</div>
+<div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 6px">
+<span class="lbl">Tipo</span>
+<div role="group" aria-label="Tipo" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{tipoPills}}" as="p" hint-placeholder-count="4">
+<button type="button" class="{{p.cls}}" sc-camel-on-click="{{p.pick}}" aria-pressed="{{p.on}}">
+<svg aria-hidden="true" width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"></path></svg>
+{{p.label}}
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<span class="eyebrow">{{contagemLista}}</span>
+<sc-if value="{{listaVazia}}" hint-placeholder-val="{{ false }}">
+<div class="glass-soft" style="padding: 24px; color: #4d5588">Nenhuma ordem encontrada. Tente outra palavra ou volte os filtros para Todas.</div>
+</sc-if>
+<sc-for list="{{lista}}" as="o" hint-placeholder-count="5">
+<button type="button" class="glass" sc-camel-on-click="{{o.pick}}" aria-pressed="{{o.on}}" style="width: 100%; text-align: left; border-radius: 0; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: #0f1646; outline: {{o.ring}}; outline-offset: 0; background: {{o.bg}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
+<span class="code" style="font-size: 24px; line-height: 1">{{o.numero}}</span>
+<span class="chip" style="background: {{o.s.bg}}; color: {{o.s.fg}}; border: 1px solid {{o.s.bd}}">
+<svg aria-hidden="true" width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{o.s.fg}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{o.s.icon}}"></path></svg>
+{{o.situacao}}
+</span>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 15px">
+<span class="tag"><svg aria-hidden="true" width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0f1646" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{o.tipoIcon}}"></path></svg>{{o.tipo}}</span>
+<span class="muted">Prioridade <strong style="color: {{o.prioCor}}">{{o.prioridade}}</strong></span>
+</div>
+<span>{{o.relato}}</span>
+<span class="muted" style="font-size: 15px">{{o.cliente}} · {{o.equip}}</span>
+</button>
+</sc-for>
+</div>
+
+<section class="glass" aria-label="Detalhe da ordem" style="flex: 1.5 1 460px; min-width: 0; padding: 28px; display: flex; flex-direction: column; gap: 22px">
+<sc-if value="{{semSel}}" hint-placeholder-val="{{ false }}">
+<div class="muted" style="padding: 24px 0">Escolha uma ordem na lista para ver o detalhe.</div>
+</sc-if>
+
+<sc-if value="{{mostraDetalhe}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<sc-if value="{{sitOk}}" hint-placeholder-val="{{ false }}"><div role="status" class="ok">{{sitOk}}</div></sc-if>
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="eyebrow">Ordem de serviço</span>
+<h2 style="margin: 0; font-weight: 300; font-stretch: 125%; text-transform: uppercase; letter-spacing: 1px; font-size: 40px; line-height: 1">{{d.numero}}</h2>
+</div>
+<span class="chip" style="font-size: 18px; padding: 6px 14px 6px 10px; background: {{d.s.bg}}; color: {{d.s.fg}}; border: 1px solid {{d.s.bd}}">
+<svg aria-hidden="true" width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{d.s.fg}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{d.s.icon}}"></path></svg>
+{{d.situacao}}
+</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px 20px">
+<sc-for list="{{d.ficha}}" as="f" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 2px"><span class="muted" style="font-weight: 700; font-size: 15px">{{f.k}}</span><span>{{f.v}}</span></div>
+</sc-for>
+</div>
+<div class="glass-soft" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+<span class="eyebrow">Relato do cliente</span>
+<span style="font-size: 18px; line-height: 1.45">{{d.relato}}</span>
+</div>
+<div class="glass-soft" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 14px 16px">
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 800">{{d.eqNome}}</span>
+<span class="muted" style="font-size: 15px">{{d.eqConfig}}</span>
+</div>
+<button type="button" class="gbtn" sc-camel-on-click="{{d.verFicha}}">Ver ficha</button>
+<button type="button" class="gbtn" sc-camel-on-click="{{d.verUpgrade}}">
+<svg aria-hidden="true" width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+Ver upgrades
+</button>
+</div>
+
+<details class="glass-soft" style="overflow: hidden">
+<summary style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; min-height: 52px; box-sizing: border-box; background: #0b1030; color: #f1f3ff">
+<span class="code" style="font-size: 15px; letter-spacing: 2px; color: #a78bfa">{{d.rot.id}}</span>
+<span style="flex: 1; font-weight: 700">Roteiro de diagnóstico: {{d.rot.titulo}}</span>
+<span style="font-size: 14px; color: #aab1ee">abrir ou fechar</span>
+</summary>
+<div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">Teste que separa o caso</span><span>{{d.rot.teste}}</span></div>
+<div style="display: flex; gap: 10px; align-items: flex-start"><span style="font-weight: 800; color: #8A3700; flex: none">Cuidado:</span><span style="color: #8A3700">{{d.rot.cuidado}}</span></div>
+<sc-if value="{{d.rot.temLimite}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFF3CD; border: 1px solid #E0A800; color: #5C4400; border-radius: 0; padding: 12px 16px"><strong>Limites de certeza.</strong> {{d.rot.limite}}</div>
+</sc-if>
+<span class="muted" style="font-size: 15px">Origem: {{d.rot.origem}}. Executado de verdade: não.</span>
+</div>
+</details>
+
+<sc-if value="{{d.travada}}" hint-placeholder-val="{{ false }}">
+<div class="glass-soft" style="padding: 14px 18px; display: flex; gap: 12px; align-items: center; background: #e6e9fb">
+<svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<span style="font-weight: 600; color: #3D3D3D">Esta ordem está {{d.situacao}}. Ela não muda mais.</span>
+</div>
+</sc-if>
+
+<div class="sep" style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 800">Informações técnicas</h3>
+<sc-if value="{{infoOk}}" hint-placeholder-val="{{ false }}"><div role="status" class="ok">{{infoOk}}</div></sc-if>
+<sc-for list="{{infoCampos}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><label for="{{c.id}}" class="lbl">{{c.label}}</label><span class="muted" style="font-size: 14px">{{c.count}}</span></div>
+<sc-if value="{{c.multi}}" hint-placeholder-val="{{ true }}"><textarea id="{{c.id}}" class="inp" value="{{c.value}}" sc-camel-on-change="{{c.onChange}}" disabled="{{d.travada}}" aria-invalid="{{c.hasErr}}" style="border-color: {{c.bd}}"></textarea></sc-if>
+<sc-if value="{{c.single}}" hint-placeholder-val="{{ false }}"><input id="{{c.id}}" class="inp" type="text" value="{{c.value}}" sc-camel-on-change="{{c.onChange}}" disabled="{{d.travada}}" aria-invalid="{{c.hasErr}}" style="border-color: {{c.bd}}"></sc-if>
+<sc-if value="{{c.hasErr}}" hint-placeholder-val="{{ false }}"><span class="err">{{c.err}}</span></sc-if>
+</div>
+</sc-for>
+<label style="display: flex; gap: 12px; align-items: center; min-height: 48px; font-weight: 600">
+<input type="checkbox" checked="{{draft.confirmada}}" sc-camel-on-change="{{onConf}}" disabled="{{d.travada}}" style="width: 22px; height: 22px; accent-color: #0f1646">
+Conclusão confirmada por teste
+</label>
+<sc-if value="{{d.aberta}}" hint-placeholder-val="{{ true }}"><button type="button" class="dbtn" sc-camel-on-click="{{salvarInfo}}">SALVAR INFORMAÇÕES</button></sc-if>
+</div>
+
+<sc-if value="{{d.aberta}}" hint-placeholder-val="{{ true }}">
+<div class="sep" style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 800">Mudar situação</h3>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="novaSit" class="lbl">Nova situação *</label>
+<sc-raw-select id="novaSit" class="inp" value="{{novaSit}}" sc-camel-on-change="{{onNovaSit}}">
+<option value="">Escolha...</option>
+<sc-for list="{{opcoes}}" as="op"><option value="{{op.v}}">{{op.l}}</option></sc-for>
+</sc-raw-select>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><label for="nota" class="lbl">{{notaLabel}}</label><span class="muted" style="font-size: 14px">{{notaCount}}</span></div>
+<textarea id="nota" class="inp" value="{{nota}}" sc-camel-on-change="{{onNota}}" style="min-height: 72px"></textarea>
+</div>
+<sc-if value="{{sitErr}}" hint-placeholder-val="{{ false }}"><span role="alert" class="err">{{sitErr}}</span></sc-if>
+<button type="button" class="rbtn" sc-camel-on-click="{{mudar}}">MUDAR SITUAÇÃO</button>
+</div>
+</sc-if>
+
+<div class="sep" style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 800">Histórico</h3>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<sc-for list="{{d.historico}}" as="h" hint-placeholder-count="3">
+<li style="display: flex; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: center; flex: none; width: 14px">
+<span style="width: 10px; height: 10px; border-radius: 999px; background: #6d28d9; box-shadow: 0 0 0 4px rgba(124,58,237,0.16); margin-top: 7px"></span>
+<span style="flex: 1; width: 2px; background: rgba(15,22,70,0.10)"></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 14px">
+<span style="font-weight: 700; font-size: 15px">{{h.quando}}</span>
+<span>{{h.texto}}</span>
+</div>
+</li>
+</sc-for>
+</ol>
+</div>
+<button type="button" class="gbtn" sc-camel-on-click="{{abrirRel}}" style="min-height: 56px; font-weight: 700">
+<svg aria-hidden="true" width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0f1646" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"></path></svg>
+GERAR RELATÓRIO TÉCNICO
+</button>
+</div>
+</sc-if>
+
+<sc-if value="{{mostraRel}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: flex-start; border-bottom: 2px solid #0f1646; padding-bottom: 14px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span class="eyebrow">TECHLAB IA</span>
+<h2 style="margin: 0; font-weight: 300; font-stretch: 125%; text-transform: uppercase; letter-spacing: 1px; font-size: 30px; line-height: 1.05">Relatório técnico | {{d.numero}}</h2>
+</div>
+<sc-if value="{{d.aberta}}" hint-placeholder-val="{{ false }}"><span style="background: #FFF3CD; border: 1px solid #E0A800; color: #5C4400; border-radius: 999px; padding: 4px 12px; font-weight: 700; font-size: 15px">(!) Parcial: a OS não está encerrada</span></sc-if>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 20px">
+<sc-for list="{{d.relCab}}" as="f" hint-placeholder-count="8"><div style="display: flex; flex-direction: column"><span class="muted" style="font-weight: 700; font-size: 15px">{{f.k}}</span><span>{{f.v}}</span></div></sc-for>
+</div>
+<sc-for list="{{d.relSec}}" as="r" hint-placeholder-count="7">
+<div style="display: flex; flex-direction: column; gap: 6px; border-top: 1px solid rgba(15,22,70,0.1); padding-top: 12px">
+<span style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px">{{r.t}}</span>
+<span style="white-space: pre-line">{{r.v}}</span>
+</div>
+</sc-for>
+<span class="muted" style="font-size: 14px">Dados FICTÍCIOS. Documento de treino.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" class="gbtn" sc-camel-on-click="{{copiar}}" style="flex: 1 1 160px">{{copiarLabel}}</button>
+<button type="button" class="gbtn" sc-camel-on-click="{{fecharRel}}" style="flex: 1 1 120px">Voltar</button>
+</div>
+</div>
+</sc-if>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isNova}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 760px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Passo 2 do caminho</span>
+<h1 class="title">Nova <span style="color: #6d28d9">ordem</span></h1>
+<span class="muted">O número ({{proxOS}}) e a data de entrada são criados sozinhos.</span>
+</div>
+<div class="glass" style="padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<sc-if value="{{fResumo}}" hint-placeholder-val="{{ false }}"><div role="alert" style="border: 1px solid #B3261E; color: #B3261E; border-radius: 0; padding: 12px 16px; font-weight: 700; background: #ffffff">{{fResumo}}</div></sc-if>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="fcli" class="lbl">Cliente *</label>
+<sc-raw-select id="fcli" class="inp" value="{{f.cliente}}" sc-camel-on-change="{{onFCli}}" style="border-color: {{fe.clienteBd}}">
+<option value="">Escolha...</option>
+<sc-for list="{{clientesOpt}}" as="c"><option value="{{c.v}}">{{c.l}}</option></sc-for>
+</sc-raw-select>
+<sc-if value="{{fe.cliente}}" hint-placeholder-val="{{ false }}"><span class="err">{{fe.cliente}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="feq" class="lbl">Equipamento *</label>
+<sc-raw-select id="feq" class="inp" value="{{f.equip}}" sc-camel-on-change="{{onFEq}}" style="border-color: {{fe.equipBd}}">
+<option value="">Escolha...</option>
+<sc-for list="{{equipsOpt}}" as="c"><option value="{{c.v}}">{{c.l}}</option></sc-for>
+</sc-raw-select>
+<span class="muted" style="font-size: 15px">Não está na lista? Cadastre antes em Equipamentos.</span>
+<sc-if value="{{fe.equip}}" hint-placeholder-val="{{ false }}"><span class="err">{{fe.equip}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">Tipo *</span>
+<div role="group" aria-label="Tipo da ordem" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{fTipos}}" as="p" hint-placeholder-count="3">
+<button type="button" class="{{p.cls}}" sc-camel-on-click="{{p.pick}}" aria-pressed="{{p.on}}" style="flex: 1 1 140px; min-height: 52px">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"></path></svg>
+{{p.label}}
+</button>
+</sc-for>
+</div>
+<sc-if value="{{fe.tipo}}" hint-placeholder-val="{{ false }}"><span class="err">{{fe.tipo}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><label for="frel" class="lbl">Relato inicial *</label><span class="muted" style="font-size: 14px">{{fRelCount}}</span></div>
+<textarea id="frel" class="inp" value="{{f.relato}}" sc-camel-on-change="{{onFRel}}" placeholder="Com as palavras do cliente" style="border-color: {{fe.relatoBd}}"></textarea>
+<sc-if value="{{fe.relato}}" hint-placeholder-val="{{ false }}"><span class="err">{{fe.relato}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">Prioridade</span>
+<div role="group" aria-label="Prioridade" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{fPrios}}" as="p" hint-placeholder-count="3"><button type="button" class="{{p.cls}}" sc-camel-on-click="{{p.pick}}" aria-pressed="{{p.on}}" style="flex: 1 1 100px; min-height: 52px">{{p.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="ftec" class="lbl">Técnico</label>
+<input id="ftec" class="inp" type="text" value="{{f.tecnico}}" sc-camel-on-change="{{onFTec}}" style="border-color: {{fe.tecnicoBd}}">
+<sc-if value="{{fe.tecnico}}" hint-placeholder-val="{{ false }}"><span class="err">{{fe.tecnico}}</span></sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" class="rbtn" sc-camel-on-click="{{salvarOS}}" style="flex: 2 1 240px">SALVAR ORDEM</button>
+<button type="button" class="gbtn" sc-camel-on-click="{{goOrdens}}" style="flex: 1 1 140px; min-height: 52px">Cancelar</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isNovoEq}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 760px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Passo 1 do caminho</span>
+<h1 class="title">Novo <span style="color: #6d28d9">equipamento</span></h1>
+<span class="muted">O código ({{proxEq}}) é criado sozinho.</span>
+</div>
+<div class="glass" style="padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<sc-if value="{{efResumo}}" hint-placeholder-val="{{ false }}"><div role="alert" style="border: 1px solid #B3261E; color: #B3261E; border-radius: 0; padding: 12px 16px; font-weight: 700; background: #ffffff">{{efResumo}}</div></sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">Tipo *</span>
+<div role="group" aria-label="Tipo do equipamento" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{eqTipos}}" as="p" hint-placeholder-count="3">
+<button type="button" class="{{p.cls}}" sc-camel-on-click="{{p.pick}}" aria-pressed="{{p.on}}" style="flex: 1 1 140px; min-height: 52px">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"></path></svg>
+{{p.label}}
+</button>
+</sc-for>
+</div>
+<sc-if value="{{efe.tipo}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.tipo}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="emarca" class="lbl">Marca *</label>
+<input id="emarca" class="inp" type="text" value="{{ef.marca}}" sc-camel-on-change="{{onEfMarca}}" placeholder="Dell" style="border-color: {{efe.marcaBd}}">
+<sc-if value="{{efe.marca}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.marca}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="emodelo" class="lbl">Modelo *</label>
+<input id="emodelo" class="inp" type="text" value="{{ef.modelo}}" sc-camel-on-change="{{onEfModelo}}" placeholder="Inspiron 15 3511" style="border-color: {{efe.modeloBd}}">
+<sc-if value="{{efe.modelo}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.modelo}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="eserie" class="lbl">Número de série (opcional)</label>
+<input id="eserie" class="inp" type="text" value="{{ef.serie}}" sc-camel-on-change="{{onEfSerie}}" placeholder="" style="border-color: {{efe.serieBd}}">
+<sc-if value="{{efe.serie}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.serie}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="ecpu" class="lbl">CPU *</label>
+<input id="ecpu" class="inp" type="text" value="{{ef.cpu}}" sc-camel-on-change="{{onEfCpu}}" placeholder="Intel Core i5-1135G7" style="border-color: {{efe.cpuBd}}">
+<sc-if value="{{efe.cpu}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.cpu}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="eram" class="lbl">RAM (GB) *</label>
+<input id="eram" class="inp" type="text" inputmode="numeric" value="{{ef.ram}}" sc-camel-on-change="{{onEfRam}}" placeholder="8" style="border-color: {{efe.ramBd}}">
+<sc-if value="{{efe.ram}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.ram}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="edisco" class="lbl">Disco *</label>
+<input id="edisco" class="inp" type="text" value="{{ef.disco}}" sc-camel-on-change="{{onEfDisco}}" placeholder="SSD 256 GB" style="border-color: {{efe.discoBd}}">
+<span class="muted" style="font-size: 15px">Tipo (HD, SSD ou NVMe) e tamanho.</span>
+<sc-if value="{{efe.disco}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.disco}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="eso" class="lbl">Sistema operacional *</label>
+<input id="eso" class="inp" type="text" value="{{ef.so}}" sc-camel-on-change="{{onEfSo}}" placeholder="Windows 11 Home" style="border-color: {{efe.soBd}}">
+<sc-if value="{{efe.so}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.so}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="eacess" class="lbl">Acessórios</label>
+<input id="eacess" class="inp" type="text" value="{{ef.acess}}" sc-camel-on-change="{{onEfAcess}}" placeholder="Se não houver, deixe vazio" style="border-color: {{efe.acessBd}}">
+<sc-if value="{{efe.acess}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.acess}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><label for="econd" class="lbl">Condição física *</label><span class="muted" style="font-size: 14px">{{efCondCount}}</span></div>
+<textarea id="econd" class="inp" value="{{ef.cond}}" sc-camel-on-change="{{onEfCond}}" placeholder="Arranhões, tela trincada, peças faltando" style="border-color: {{efe.condBd}}"></textarea>
+<sc-if value="{{efe.cond}}" hint-placeholder-val="{{ false }}"><span class="err">{{efe.cond}}</span></sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" class="rbtn" sc-camel-on-click="{{salvarEq}}" style="flex: 2 1 240px">CADASTRAR EQUIPAMENTO</button>
+<button type="button" class="gbtn" sc-camel-on-click="{{goEquip}}" style="flex: 1 1 140px; min-height: 52px">Cancelar</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isEquip}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Passo 1 do caminho</span>
+<h1 class="title"><span style="color: #6d28d9">Equipamentos</span> na bancada</h1>
+<div><button type="button" class="rbtn" sc-camel-on-click="{{goNovoEq}}">+ CADASTRAR EQUIPAMENTO</button></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{eqLista}}" as="e" hint-placeholder-count="3">
+<button type="button" class="glass" sc-camel-on-click="{{e.pick}}" aria-pressed="{{e.on}}" style="text-align: left; border-radius: 0; padding: 16px; display: flex; gap: 16px; align-items: center; color: #0f1646; outline: {{e.ring}}; outline-offset: 0">
+<div style="width: 56px; height: 56px; border-radius: 0; background: #0b1030; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2)">
+<svg aria-hidden="true" width="26" height="26" sc-camel-view-box="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{e.icon}}"></path></svg>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"><span class="code" style="font-size: 20px">{{e.codigo}}</span><span class="tag" style="font-size: 14px">{{e.tipo}}</span></div>
+<span style="font-weight: 700">{{e.nome}}</span>
+<span class="muted" style="font-size: 15px">{{e.resumo}}</span>
+<span style="font-size: 15px; font-weight: 600">{{e.andamento}}</span>
+</div>
+</button>
+</sc-for>
+</div>
+<section class="glass" aria-label="Ficha do equipamento" style="flex: 1.5 1 440px; min-width: 0; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="eyebrow">Ficha {{eq.codigo}}</span>
+<h2 style="margin: 0; font-weight: 300; font-stretch: 125%; text-transform: uppercase; letter-spacing: 1px; font-size: 32px; line-height: 1.05">{{eq.nome}}</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px 20px">
+<sc-for list="{{eq.ficha}}" as="f" hint-placeholder-count="9"><div style="display: flex; flex-direction: column; gap: 2px"><span class="muted" style="font-weight: 700; font-size: 15px">{{f.k}}</span><span>{{f.v}}</span></div></sc-for>
+</div>
+<div class="sep" style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 800">Ordens deste equipamento</h3>
+<sc-for list="{{eq.ordens}}" as="o" hint-placeholder-count="2">
+<button type="button" class="glass-soft" sc-camel-on-click="{{o.pick}}" style="text-align: left; min-height: 52px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 10px 14px; color: #0f1646">
+<span class="code" style="font-size: 18px">{{o.numero}}</span>
+<span class="chip" style="font-size: 14px; background: {{o.s.bg}}; color: {{o.s.fg}}; border: 1px solid {{o.s.bd}}">{{o.situacao}}</span>
+<span class="muted" style="flex: 1 1 200px; font-size: 15px">{{o.rotulo}}</span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" class="rbtn" sc-camel-on-click="{{eq.abrirOS}}" style="flex: 2 1 260px">ABRIR OS PARA ESTE EQUIPAMENTO</button>
+<button type="button" class="gbtn" sc-camel-on-click="{{eq.upgrade}}" style="flex: 1 1 180px; min-height: 52px">
+<svg aria-hidden="true" width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+Ver upgrades
+</button>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isMontar}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Montar meu computador</span>
+<h1 class="title">Monte e <span style="color: #6d28d9">compare</span></h1>
+<span class="muted" style="max-width: 640px">Conte o que você quer fazer com a máquina. O sistema sugere as peças, confere se elas combinam e guarda até 3 montagens para comparar lado a lado.</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<section class="glass" style="padding: 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px"><span class="code" style="width: 36px; height: 36px; border-radius: 0; background: #6d28d9; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px">1</span><h2 style="margin: 0; font-size: 22px; font-weight: 800">O que você quer</h2></div>
+<div role="group" aria-label="Uso principal" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{usos}}" as="u" hint-placeholder-count="4">
+<button type="button" class="{{u.cls}}" sc-camel-on-click="{{u.pick}}" aria-pressed="{{u.on}}" style="flex: 1 1 150px">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{u.icon}}"></path></svg>
+{{u.label}}
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="mdesc" class="lbl">Descreva com suas palavras</label>
+<textarea id="mdesc" class="inp" value="{{mDesc}}" sc-camel-on-change="{{onMDesc}}" placeholder="Ex.: quero editar vídeos do celular e jogar no fim de semana, sem muito barulho"></textarea>
+</div>
+<sc-if value="{{mErr}}" hint-placeholder-val="{{ false }}"><span class="err">{{mErr}}</span></sc-if>
+<sc-if value="{{mSug}}" hint-placeholder-val="{{ false }}"><div role="status" class="ok">{{mSug}}</div></sc-if>
+<button type="button" class="rbtn" sc-camel-on-click="{{sugerir}}" style="align-self: flex-start">
+<svg aria-hidden="true" width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+SUGERIR CONFIGURAÇÃO
+</button>
+</section>
+
+<section class="glass" style="padding: 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px"><span class="code" style="width: 36px; height: 36px; border-radius: 0; background: #6d28d9; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px">2</span><h2 style="margin: 0; font-size: 22px; font-weight: 800">Peças</h2><span class="muted" style="margin-left: auto; font-size: 15px">Troque qualquer peça. A conferência atualiza na hora.</span></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+<sc-for list="{{pecas}}" as="p" hint-placeholder-count="7">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="{{p.id}}" class="lbl" style="display: flex; align-items: center; gap: 8px">
+<svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"></path></svg>
+{{p.label}}
+</label>
+<sc-raw-select id="{{p.id}}" class="inp" value="{{p.value}}" sc-camel-on-change="{{p.onChange}}" aria-invalid="{{p.bad}}" style="border-color: {{p.bd}}">
+<sc-for list="{{p.opts}}" as="o"><option value="{{o.v}}">{{o.l}}</option></sc-for>
+</sc-raw-select>
+<span class="muted" style="font-size: 14px">{{p.info}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+
+<aside class="glass" style="flex: 1 1 340px; min-width: 0; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<span class="eyebrow">Conferência da montagem</span>
+<div style="display: flex; gap: 14px; flex-wrap: wrap">
+<div class="glass-soft" style="flex: 1 1 130px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span class="muted" style="font-size: 14px; font-weight: 700">Consumo estimado</span>
+<span class="code" style="font-size: 38px; line-height: 1">{{consumo}} W</span>
+</div>
+<div class="glass-soft" style="flex: 1 1 130px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span class="muted" style="font-size: 14px; font-weight: 700">Fonte escolhida</span>
+<span class="code" style="font-size: 38px; line-height: 1">{{fonteW}} W</span>
+</div>
+</div>
+<div style="height: 10px; border-radius: 999px; background: rgba(15,22,70,0.08); overflow: hidden" role="img" aria-label="{{usoFonteLabel}}">
+<div style="height: 100%; width: {{usoFonte}}; border-radius: 999px; background: {{usoFonteCor}}"></div>
+</div>
+<span class="muted" style="font-size: 15px">{{usoFonteLabel}}</span>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+<li style="display: flex; gap: 10px; align-items: flex-start">
+<span style="width: 26px; height: 26px; border-radius: 999px; background: {{c.bg}}; display: flex; align-items: center; justify-content: center; flex: none">
+<svg aria-hidden="true" width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{c.fg}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{c.icon}}"></path></svg>
+</span>
+<span style="color: {{c.fg}}; font-weight: {{c.fw}}">{{c.txt}}</span>
+</li>
+</sc-for>
+</ul>
+<div class="sep" style="display: flex; flex-direction: column; gap: 10px">
+<label for="mnome" class="lbl">Nome desta montagem</label>
+<input id="mnome" class="inp" type="text" value="{{mNome}}" sc-camel-on-change="{{onMNome}}" placeholder="Ex.: Jogos econômico">
+<sc-if value="{{salvarErr}}" hint-placeholder-val="{{ false }}"><span class="err">{{salvarErr}}</span></sc-if>
+<button type="button" class="dbtn" sc-camel-on-click="{{salvarCfg}}">
+<svg aria-hidden="true" width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6v14H4zM14 5h6v14h-6z"></path></svg>
+SALVAR PARA COMPARAR ({{nSalvos}}/3)
+</button>
+</div>
+</aside>
+</div>
+
+<section class="glass" style="padding: 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span class="code" style="width: 36px; height: 36px; border-radius: 0; background: #6d28d9; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px">3</span><h2 style="margin: 0; font-size: 22px; font-weight: 800">Comparação</h2><span class="muted" style="font-size: 15px">O ponto vermelho marca o que muda entre as montagens.</span></div>
+<sc-if value="{{semSalvos}}" hint-placeholder-val="{{ false }}">
+<div class="glass-soft" style="padding: 22px; color: #4d5588">Nenhuma montagem salva ainda. Monte acima e toque em Salvar para comparar.</div>
+</sc-if>
+<sc-if value="{{temSalvos}}" hint-placeholder-val="{{ true }}">
+<div style="overflow-x: auto">
+<div style="min-width: 720px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: grid; grid-template-columns: 170px {{cmpCols}}; gap: 10px; align-items: end">
+<span></span>
+<sc-for list="{{salvos}}" as="s" hint-placeholder-count="2">
+<div class="glass-soft" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; background: #0b1030; color: #ffffff; border-color: #0b1030">
+<span class="code" style="font-size: 14px; letter-spacing: 2px; color: #a78bfa">MONTAGEM {{s.letra}}</span>
+<span style="font-weight: 800; font-size: 18px; line-height: 1.2">{{s.nome}}</span>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<button type="button" sc-camel-on-click="{{s.carregar}}" style="min-height: 40px; padding: 0 12px; border-radius: 0; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.12); color: #ffffff; font-weight: 600; font-size: 14px">Editar</button>
+<button type="button" sc-camel-on-click="{{s.remover}}" aria-label="Remover montagem {{s.letra}}" style="min-height: 40px; padding: 0 12px; border-radius: 0; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #ffffff; font-weight: 600; font-size: 14px">Remover</button>
+</div>
+</div>
+</sc-for>
+</div>
+<sc-for list="{{cmpRows}}" as="r" hint-placeholder-count="9">
+<div style="display: grid; grid-template-columns: 170px {{cmpCols}}; gap: 10px; align-items: stretch">
+<span style="font-weight: 700; padding: 12px 0; font-size: 15px">{{r.label}}</span>
+<sc-for list="{{r.cells}}" as="c">
+<div class="glass-soft" style="padding: 12px 14px; display: flex; gap: 8px; align-items: flex-start; font-size: 15px; font-weight: {{c.fw}}">
+<sc-if value="{{c.diff}}" hint-placeholder-val="{{ false }}"><span aria-label="muda" style="width: 8px; height: 8px; border-radius: 999px; background: #6d28d9; margin-top: 7px; flex: none"></span></sc-if>
+<span style="color: {{c.fg}}">{{c.v}}</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{isUpgrade}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Upgrade</span>
+<h1 class="title">O que dá para <span style="color: #6d28d9">melhorar</span></h1>
+<span class="muted" style="max-width: 680px">Mostre o que a sua máquina tem: um PDF, uma foto da tela de configurações ou um texto. O sistema lê as peças e procura na internet o que é compatível com ela.</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="glass" style="flex: 1 1 420px; min-width: 0; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px"><span class="code" style="width: 36px; height: 36px; border-radius: 0; background: #6d28d9; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px">1</span><h2 style="margin: 0; font-size: 22px; font-weight: 800">Sua máquina</h2></div>
+<div role="tablist" aria-label="Como informar a máquina" class="glass-soft" style="display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-radius: 0">
+<sc-for list="{{upModos}}" as="m" hint-placeholder-count="3">
+<button type="button" role="tab" aria-selected="{{m.on}}" sc-camel-on-click="{{m.pick}}" class="{{m.cls}}" style="flex: 1 1 140px; box-shadow: none">{{m.label}}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{upIsArquivo}}" hint-placeholder-val="{{ true }}">
+<label for="upfile" class="glass-soft" style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 30px 20px; border: 2px dashed rgba(15,22,70,0.2); text-align: center; cursor: pointer">
+<span style="width: 60px; height: 60px; border-radius: 0; background: #0b1030; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(15,22,70,0.22)">
+<svg aria-hidden="true" width="28" height="28" sc-camel-view-box="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v4h16v-4"></path></svg>
+</span>
+<span style="font-weight: 800; font-size: 18px">{{upFileLabel}}</span>
+<span class="muted" style="font-size: 15px">PDF, PNG, JPG ou WEBP. Toque para escolher.</span>
+<input id="upfile" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" sc-camel-on-change="{{onUpFile}}" style="position: absolute; width: 1px; height: 1px; opacity: 0">
+</label>
+<div class="glass-soft" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; font-size: 15px">
+<span class="lbl">O que serve</span>
+<span>A tela Sobre do Windows (Configurações › Sistema › Sobre), o relatório de um programa de inventário, a nota fiscal ou a etiqueta do fabricante.</span>
+</div>
+</sc-if>
+<sc-if value="{{upIsOficina}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="Equipamento da oficina" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{upEquips}}" as="e" hint-placeholder-count="3">
+<button type="button" class="{{e.cls}}" sc-camel-on-click="{{e.pick}}" aria-pressed="{{e.on}}" style="justify-content: flex-start; min-height: 56px; border-radius: 0; text-align: left">
+<span class="code" style="font-size: 18px">{{e.codigo}}</span>
+<span>{{e.nome}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{upIsTexto}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="uptxt" class="lbl">Escreva o que a máquina tem</label>
+<textarea id="uptxt" class="inp" value="{{upText}}" sc-camel-on-change="{{onUpText}}" placeholder="Ex.: notebook Dell Inspiron 15, i5 de 11ª geração, 8 GB de RAM, SSD 256 GB" style="min-height: 120px"></textarea>
+</div>
+</sc-if>
+<sc-if value="{{upErr}}" hint-placeholder-val="{{ false }}"><span role="alert" class="err">{{upErr}}</span></sc-if>
+<button type="button" class="rbtn" sc-camel-on-click="{{lerUpgrade}}">
+<svg aria-hidden="true" width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4a7 7 0 1 0 0 14a7 7 0 1 0 0-14zM20 20l-4-4"></path></svg>
+LER E BUSCAR UPGRADES
+</button>
+<span class="muted" style="font-size: 14px">Protótipo de design: a leitura e a busca são simuladas. Na versão final, o arquivo vai para a IA e a busca consulta o site do fabricante e lojas.</span>
+</section>
+
+<section class="glass" aria-live="polite" style="flex: 1.4 1 520px; min-width: 0; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px"><span class="code" style="width: 36px; height: 36px; border-radius: 0; background: #6d28d9; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px">2</span><h2 style="margin: 0; font-size: 22px; font-weight: 800">Possibilidades de upgrade</h2></div>
+<sc-if value="{{upIdle}}" hint-placeholder-val="{{ false }}">
+<div class="glass-soft" style="padding: 26px; color: #4d5588">Informe a máquina ao lado e toque em Ler e buscar upgrades. As sugestões aparecem aqui, com o ganho, a dificuldade e o cuidado de cada troca.</div>
+</sc-if>
+<sc-if value="{{upRodando}}" hint-placeholder-val="{{ false }}">
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{upPassos}}" as="p" hint-placeholder-count="4">
+<li class="glass-soft" style="padding: 12px 16px; display: flex; gap: 12px; align-items: center; opacity: {{p.op}}">
+<span style="width: 26px; height: 26px; border-radius: 999px; background: {{p.bg}}; display: flex; align-items: center; justify-content: center; flex: none">
+<svg aria-hidden="true" width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"></path></svg>
+</span>
+<span style="font-weight: {{p.fw}}">{{p.txt}}</span>
+</li>
+</sc-for>
+</ol>
+</sc-if>
+<sc-if value="{{upPronto}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="glass-soft" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center">
+<span style="font-weight: 800; font-size: 18px">{{up.titulo}}</span>
+<span class="tag" style="font-size: 14px">{{up.origem}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 16px">
+<sc-for list="{{up.lido}}" as="f" hint-placeholder-count="5"><div style="display: flex; flex-direction: column"><span class="muted" style="font-size: 14px; font-weight: 700">{{f.k}}</span><span style="font-size: 15px">{{f.v}}</span></div></sc-for>
+</div>
+</div>
+<sc-for list="{{up.itens}}" as="i" hint-placeholder-count="3">
+<article class="glass-soft" style="padding: 18px; display: flex; flex-direction: column; gap: 12px; background: #ffffff">
+<div style="display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap">
+<span style="font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 0; background: rgba(124,58,237,0.1); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{i.icon}}"></path></svg></span>
+{{i.comp}}
+</span>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<span class="chip" style="background: {{i.gBg}}; color: {{i.gFg}}; border: 1px solid {{i.gBg}}">Ganho {{i.ganho}}</span>
+<span class="chip" style="background: #ffffff; color: #0f1646; border: 1px solid rgba(15,22,70,0.2)">{{i.dif}}</span>
+</div>
+</div>
+<div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<span class="muted">{{i.hoje}}</span>
+<svg aria-hidden="true" width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+<span style="font-weight: 700">{{i.sug}}</span>
+</div>
+<div style="display: flex; gap: 8px; font-size: 15px"><span style="font-weight: 800; color: #8A3700; flex: none">Cuidado:</span><span style="color: #8A3700">{{i.cuidado}}</span></div>
+<div style="display: flex; gap: 8px; font-size: 15px; background: #FFF3CD; border-radius: 0; padding: 10px 12px; color: #5C4400"><span style="font-weight: 800; flex: none">Conferir:</span><span>{{i.conferir}}</span></div>
+</article>
+</sc-for>
+<div class="glass-soft" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; background: #e6e9fb">
+<span class="lbl">Não dá para trocar</span>
+<sc-for list="{{up.fixo}}" as="x" hint-placeholder-count="2"><span style="display: flex; gap: 8px"><span aria-hidden="true" style="color: #3D3D3D; font-weight: 900">×</span><span>{{x}}</span></span></sc-for>
+</div>
+<div class="glass-soft" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; font-size: 15px">
+<span class="lbl">Fontes consultadas</span>
+<span class="muted">Na versão final aparecem aqui os links do manual do fabricante e das lojas, com a data da consulta.</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-if value="{{up.temEq}}" hint-placeholder-val="{{ true }}">
+<button type="button" class="rbtn" sc-camel-on-click="{{upAbrirOS}}" style="flex: 2 1 240px">ABRIR OS DE UPGRADE</button>
+</sc-if>
+<button type="button" class="gbtn" sc-camel-on-click="{{upNovo}}" style="flex: 1 1 160px; min-height: 52px">Analisar outra máquina</button>
+</div>
+</div>
+</sc-if>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isAjuda}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow"><span style="color: #6d28d9">◆</span> Ajuda</span>
+<h1 class="title">Como a <span style="color: #6d28d9">oficina</span> funciona</h1>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<sc-for list="{{passos}}" as="p" hint-placeholder-count="5">
+<div class="glass" style="border-radius: 0; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<span class="code" style="font-size: 40px; line-height: 1; color: #6d28d9">{{p.n}}</span>
+<span style="font-weight: 700">{{p.t}}</span>
+<span class="muted" style="font-size: 15px">{{p.d}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="glass" style="flex: 1 1 360px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800">As 6 situações</h2>
+<sc-for list="{{sitAjuda}}" as="s" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; border-bottom: 1px solid rgba(15,22,70,0.08)">
+<span class="chip" style="align-self: flex-start; background: {{s.bg}}; color: {{s.fg}}; border: 1px solid {{s.bd}}">
+<svg aria-hidden="true" width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{s.fg}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{s.icon}}"></path></svg>
+{{s.nome}}
+</span>
+<span>{{s.sig}}</span>
+</div>
+</sc-for>
+</section>
+<section class="glass" style="flex: 1 1 360px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800">Segurança na bancada</h2>
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{seguranca}}" as="r" hint-placeholder-count="8"><li>{{r}}</li></sc-for>
+</ol>
+<div style="background: #FFF3CD; border: 1px solid #E0A800; color: #5C4400; border-radius: 0; padding: 12px 16px; font-weight: 600">Hipótese não é prova. Só vale como prova o que está em Testes executados.</div>
+<div class="sep" style="display: flex; flex-direction: column; gap: 10px">
+<span class="muted">Os dados ficam só neste navegador, neste aparelho.</span>
+<button type="button" class="gbtn" sc-camel-on-click="{{resetar}}" style="min-height: 52px; font-weight: 700">Voltar aos dados de exemplo</button>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+</div>
+
+<footer style="background: linear-gradient(135deg, #0b1030 0%, #1a1f78 60%, #35198f 100%); color: #cdd1f5">
+<div style="max-width: 1320px; margin: 0 auto; padding: 60px 28px 32px; display: flex; flex-direction: column; gap: 40px; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 36px 64px">
+<div style="flex: 1.4 1 280px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-weight: 300; font-stretch: 125%; font-size: 24px; letter-spacing: 4px; color: #f1f3ff">TECHLAB<span style="font-weight: 800; color: #a78bfa"> IA</span></span>
+<span style="font-size: 15px; line-height: 1.6; max-width: 380px">Oficina digital de treino. Projeto unificado dos trabalhos do Aluno 1 (equipamentos e hardware) e do Aluno 2 (ordens, software e redes).</span>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
+<span class="eyebrow" style="color: #f1f3ff; margin-bottom: 8px">Oficina</span>
+<button type="button" class="flink" sc-camel-on-click="{{goOrdens}}">Ordens de serviço</button>
+<button type="button" class="flink" sc-camel-on-click="{{goNova}}">Nova ordem</button>
+<button type="button" class="flink" sc-camel-on-click="{{goEquip}}">Equipamentos</button>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
+<span class="eyebrow" style="color: #f1f3ff; margin-bottom: 8px">Ferramentas</span>
+<button type="button" class="flink" sc-camel-on-click="{{goMontar}}">Montar PC</button>
+<button type="button" class="flink" sc-camel-on-click="{{goUpgrade}}">Upgrade</button>
+<button type="button" class="flink" sc-camel-on-click="{{goAjuda}}">Ajuda e segurança</button>
+</div>
+<div style="flex: 1.2 1 240px; display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow" style="color: #f1f3ff"><span style="color: #a78bfa">◆</span> Regra de ouro</span>
+<span style="font-size: 15px; line-height: 1.6">Hipótese não é prova. Só vale como prova o que está em Testes executados. Nunca escreva um teste que não foi feito.</span>
+</div>
+</div>
+<div style="border-top: 1px solid #3a44a8; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 14px; color: #aab1ee">
+<span>Todos os dados são FICTÍCIOS. Projeto de treino, 2026.</span>
+<span class="eyebrow" style="color: #aab1ee; font-size: 13px">Montagem e manutenção de computadores</span>
+</div>
+</div>
+</footer>
+</div>
+</script>
+<script>window.__DC_LOGIC=function(DCLogic,StreamableLogic,React){
+
+var IC = {
+  aberta: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z',
+  diag: 'M11 4a7 7 0 1 0 0 14a7 7 0 1 0 0-14zM20 20l-4-4',
+  serv: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z',
+  aguard: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 7v5l3 2',
+  enc: 'M5 12l5 5L19 7',
+  canc: 'M6 6l12 12M18 6L6 18',
+  hw: 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4',
+  sw: 'M3 5h18v14H3zM3 9h18',
+  rede: 'M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01',
+  todos: 'M4 6h16M4 12h16M4 18h16',
+  ordens: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6',
+  ajuda: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7M12 17h.01',
+  note: 'M4 6h16v10H4zM2 19h20',
+  desk: 'M3 4h18v12H3zM8 20h8M12 16v4',
+  aio: 'M3 4h18v13H3zM9 21h6M12 17v4',
+  up: 'M12 19V5M5 12l7-7 7 7',
+  ram: 'M3 8h18v8H3zM7 8v8M11 8v8M15 8v8M5 16v3M19 16v3',
+  disco: 'M4 6h16v12H4zM8 14h.01M12 10h6',
+  gpu: 'M3 7h18v10H3zM8 12a2 2 0 1 0 0 .01M15 12a2 2 0 1 0 0 .01M6 17v3',
+  fonte: 'M13 3L5 14h6l-1 7 8-11h-6z',
+  placa: 'M4 4h16v16H4zM8 8h4v4H8zM15 8h2M15 12h2M8 16h9',
+  gab: 'M7 3h10v18H7zM10 7h4M12 17h.01',
+  bat: 'M3 8h15v8H3zM21 11v2M6 11h6',
+  dobra: 'M4 18h16M6 18l4-12h4l4 12',
+  plug: 'M9 3v5M15 3v5M7 8h10v4a5 5 0 0 1-10 0zM12 17v4',
+  wifi: 'M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01',
+  jogo: 'M6 9h12a4 4 0 0 1 0 8c-1.5 0-2.5-1-3.5-2h-5c-1 1-2 2-3.5 2a4 4 0 0 1 0-8zM8 11v4M6 13h4M16 12h.01M18 14h.01',
+  video: 'M3 6h13v12H3zM16 10l5-3v10l-5-3',
+  code: 'M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14',
+  book: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5'
+};
+var SIT = {
+  'Aberta': { bg: '#DCEBFA', fg: '#0B5CAD', bd: '#DCEBFA', icon: IC.aberta, sig: 'O computador foi recebido e a OS foi registrada. Ninguém começou a investigar.' },
+  'Em diagnóstico': { bg: '#E8E3F7', fg: '#4B3F9E', bd: '#E8E3F7', icon: IC.diag, sig: 'O técnico está investigando o problema e fazendo testes.' },
+  'Em serviço': { bg: '#FFF3CD', fg: '#5C4400', bd: '#FFF3CD', icon: IC.serv, sig: 'O diagnóstico foi registrado e o serviço está sendo feito.' },
+  'Aguardando cliente': { bg: '#FDE7D3', fg: '#7A3E00', bd: '#FDE7D3', icon: IC.aguard, sig: 'A OS está parada, esperando resposta ou decisão do cliente.' },
+  'Encerrada': { bg: '#FFFFFF', fg: '#1B6E3C', bd: '#1B6E3C', icon: IC.enc, sig: 'O serviço terminou e o resultado foi registrado. Não muda mais.' },
+  'Cancelada': { bg: '#E6E6E6', fg: '#3D3D3D', bd: '#E6E6E6', icon: IC.canc, sig: 'A OS foi cancelada, com o motivo registrado. Não muda mais.' }
+};
+var SIT_NOMES = ['Aberta', 'Em diagnóstico', 'Em serviço', 'Aguardando cliente', 'Encerrada', 'Cancelada'];
+var TRANS = {
+  'Aberta': [['Em diagnóstico', false], ['Cancelada', true]],
+  'Em diagnóstico': [['Em serviço', false], ['Aguardando cliente', true], ['Cancelada', true]],
+  'Em serviço': [['Encerrada', false], ['Aguardando cliente', true], ['Em diagnóstico', true]],
+  'Aguardando cliente': [['Em diagnóstico', false], ['Em serviço', false], ['Cancelada', true]],
+  'Encerrada': [], 'Cancelada': []
+};
+var TIPO_IC = { 'Hardware': IC.hw, 'Software': IC.sw, 'Rede': IC.rede };
+var EQ_IC = { 'Notebook': IC.note, 'Desktop': IC.desk, 'All-in-one': IC.aio };
+var CLIENTES = { CL001: 'Maria Exemplo', CL002: 'João Teste', CL003: 'Ana Modelo' };
+var SEM_RISCO = 'Sem risco elétrico. Só desativar programas ou mudar configurações com autorização do cliente.';
+var ROT = {
+  OS001: { id: 'DG001', titulo: 'Windows lento', teste: 'Gerenciador de Tarefas: disco em 100% e 12 programas na inicialização.', cuidado: SEM_RISCO, limite: '', origem: 'Aluno 2' },
+  OS002: { id: 'DG002', titulo: 'Wi-Fi conectado, sem internet', teste: 'ping por número responde, ping por nome falha, ipconfig /all mostra DNS errado.', cuidado: SEM_RISCO, limite: '', origem: 'Aluno 2' },
+  OS003: { id: 'DG003', titulo: 'Tela esticada após atualização', teste: 'Gerenciador de Dispositivos e resolução recomendada (só planejado).', cuidado: SEM_RISCO, limite: '', origem: 'Aluno 2' },
+  OS004: { id: 'DG004', titulo: 'Liga, mas sem imagem', teste: 'Cabo e monitor, depois reencaixe da RAM.', cuidado: 'Desligar, tirar da tomada, esperar alguns minutos e descarregar a estática antes de abrir. Segurar o pente de memória pelas bordas. Nunca abrir a fonte.', limite: '', origem: 'Aluno 1' },
+  OS005: { id: 'DG005', titulo: 'Telas azuis, suspeita de RAM', teste: 'Diagnóstico de Memória do Windows e MemTest86.', cuidado: 'Notebook com bateria interna: tirar o carregador não desliga a placa. Desconectar o cabo da bateria na placa antes de mexer na memória.', limite: 'Um teste de memória sem erros não prova que a memória está saudável.', origem: 'Aluno 1' },
+  OS006: { id: 'DG006', titulo: 'Lentidão, suspeita de SSD', teste: 'Leitura do SMART, depois do backup.', cuidado: 'Backup primeiro. Evitar testes pesados de gravação se o SMART mostrar alertas.', limite: '', origem: 'Aluno 1' }
+};
+var SEGURANCA = [
+  'Antes de abrir qualquer equipamento: desligar, tirar da tomada, esperar alguns minutos e descarregar a estática.',
+  'Segurar pentes de memória pelas bordas, sem tocar nos contatos dourados.',
+  'Notebook com bateria interna: desconectar o cabo da bateria na placa antes de mexer em memória ou disco.',
+  'Consultar o manual do modelo antes de abrir: alguns notebooks têm memória soldada.',
+  'Nunca abrir a fonte de alimentação: ela guarda carga perigosa mesmo desligada.',
+  'Não usar aspirador comum dentro do gabinete.',
+  'Disco com suspeita de falha: backup primeiro.',
+  'Só desativar programas ou mudar configurações com autorização do cliente.'
+];
+
+/* Montar PC: catálogo didático (sem preço) */
+var CAT = {
+  cpu: { label: 'Processador', icon: IC.hw, opts: [
+    { v: 'r5600', l: 'AMD Ryzen 5 5600', socket: 'AM4', mem: ['DDR4'], w: 65, igpu: false, info: 'AM4 · 6 núcleos · sem vídeo integrado' },
+    { v: 'r5600g', l: 'AMD Ryzen 5 5600G', socket: 'AM4', mem: ['DDR4'], w: 65, igpu: true, info: 'AM4 · 6 núcleos · com vídeo integrado' },
+    { v: 'r7600', l: 'AMD Ryzen 5 7600', socket: 'AM5', mem: ['DDR5'], w: 65, igpu: true, info: 'AM5 · 6 núcleos · vídeo integrado básico' },
+    { v: 'i12400f', l: 'Intel Core i5-12400F', socket: 'LGA1700', mem: ['DDR4', 'DDR5'], w: 65, igpu: false, info: 'LGA1700 · 6 núcleos · sem vídeo integrado' },
+    { v: 'i12400', l: 'Intel Core i5-12400', socket: 'LGA1700', mem: ['DDR4', 'DDR5'], w: 65, igpu: true, info: 'LGA1700 · 6 núcleos · com vídeo integrado' }
+  ] },
+  mb: { label: 'Placa-mãe', icon: IC.placa, opts: [
+    { v: 'b550', l: 'B550 (AM4, DDR4)', socket: 'AM4', mem: 'DDR4', info: 'Para Ryzen 5000' },
+    { v: 'b650', l: 'B650 (AM5, DDR5)', socket: 'AM5', mem: 'DDR5', info: 'Para Ryzen 7000' },
+    { v: 'b760d4', l: 'B760 DDR4 (LGA1700)', socket: 'LGA1700', mem: 'DDR4', info: 'Intel 12ª a 14ª geração' },
+    { v: 'b760d5', l: 'B760 DDR5 (LGA1700)', socket: 'LGA1700', mem: 'DDR5', info: 'Intel 12ª a 14ª geração' }
+  ] },
+  ram: { label: 'Memória RAM', icon: IC.ram, opts: [
+    { v: 'd4_16', l: '16 GB DDR4 3200 (2 × 8)', tipo: 'DDR4', gb: 16, info: 'Dois pentes: dual channel' },
+    { v: 'd4_32', l: '32 GB DDR4 3200 (2 × 16)', tipo: 'DDR4', gb: 32, info: 'Dois pentes: dual channel' },
+    { v: 'd5_16', l: '16 GB DDR5 5600 (2 × 8)', tipo: 'DDR5', gb: 16, info: 'Dois pentes: dual channel' },
+    { v: 'd5_32', l: '32 GB DDR5 6000 (2 × 16)', tipo: 'DDR5', gb: 32, info: 'Dois pentes: dual channel' }
+  ] },
+  gpu: { label: 'Placa de vídeo', icon: IC.gpu, opts: [
+    { v: 'none', l: 'Sem placa (usar a do processador)', w: 0, rec: 0, info: 'Exige processador com vídeo integrado' },
+    { v: 'rtx3050', l: 'GeForce RTX 3050 8 GB', w: 130, rec: 550, info: 'Fabricante pede fonte de 550 W' },
+    { v: 'rtx4060', l: 'GeForce RTX 4060 8 GB', w: 115, rec: 550, info: 'Fabricante pede fonte de 550 W' },
+    { v: 'rx7600', l: 'Radeon RX 7600 8 GB', w: 165, rec: 550, info: 'Fabricante pede fonte de 550 W' },
+    { v: 'rtx4070', l: 'GeForce RTX 4070 12 GB', w: 200, rec: 650, info: 'Fabricante pede fonte de 650 W' }
+  ] },
+  ssd: { label: 'Armazenamento', icon: IC.disco, opts: [
+    { v: 's500', l: 'SSD NVMe 500 GB', info: 'Sistema e programas' },
+    { v: 's1t', l: 'SSD NVMe 1 TB', info: 'Sistema, jogos e arquivos' },
+    { v: 's2t', l: 'SSD NVMe 2 TB', info: 'Projetos de vídeo grandes' }
+  ] },
+  psu: { label: 'Fonte', icon: IC.fonte, opts: [
+    { v: 'p450', l: '450 W 80 Plus Bronze', w: 450, info: 'Máquinas sem placa de vídeo' },
+    { v: 'p550', l: '550 W 80 Plus Bronze', w: 550, info: 'Placas de vídeo de entrada' },
+    { v: 'p650', l: '650 W 80 Plus Bronze', w: 650, info: 'Placas intermediárias' },
+    { v: 'p750', l: '750 W 80 Plus Gold', w: 750, info: 'Folga para upgrades' }
+  ] },
+  gab: { label: 'Gabinete', icon: IC.gab, opts: [
+    { v: 'matx', l: 'Micro-ATX compacto', info: 'Ocupa menos espaço' },
+    { v: 'atx', l: 'ATX com 3 ventoinhas', info: 'Mais ventilação e espaço' }
+  ] }
+};
+var CAT_KEYS = ['cpu', 'mb', 'ram', 'gpu', 'ssd', 'psu', 'gab'];
+var USOS = [
+  { v: 'estudo', l: 'Estudo e escritório', icon: IC.book, cfg: { cpu: 'r5600g', mb: 'b550', ram: 'd4_16', gpu: 'none', ssd: 's500', psu: 'p450', gab: 'matx' } },
+  { v: 'prog', l: 'Programação', icon: IC.code, cfg: { cpu: 'i12400', mb: 'b760d4', ram: 'd4_32', gpu: 'none', ssd: 's1t', psu: 'p450', gab: 'matx' } },
+  { v: 'jogos', l: 'Jogos', icon: IC.jogo, cfg: { cpu: 'r7600', mb: 'b650', ram: 'd5_32', gpu: 'rtx4060', ssd: 's1t', psu: 'p650', gab: 'atx' } },
+  { v: 'video', l: 'Edição de vídeo', icon: IC.video, cfg: { cpu: 'r7600', mb: 'b650', ram: 'd5_32', gpu: 'rtx4070', ssd: 's2t', psu: 'p750', gab: 'atx' } }
+];
+function pick(k, v) { return CAT[k].opts.find(function (o) { return o.v === v; }) || CAT[k].opts[0]; }
+function avaliar(cfg) {
+  var cpu = pick('cpu', cfg.cpu), mb = pick('mb', cfg.mb), ram = pick('ram', cfg.ram), gpu = pick('gpu', cfg.gpu), psu = pick('psu', cfg.psu);
+  var c = [], bad = {};
+  if (cpu.socket !== mb.socket) { c.push({ ok: false, txt: '(!) O processador usa ' + cpu.socket + ' e a placa-mãe ' + mb.socket + '. Não encaixam.' }); bad.cpu = bad.mb = true; }
+  else c.push({ ok: true, txt: 'Processador e placa-mãe combinam (' + cpu.socket + ').' });
+  if (ram.tipo !== mb.mem) { c.push({ ok: false, txt: '(!) A placa-mãe aceita ' + mb.mem + ' e a memória é ' + ram.tipo + '.' }); bad.ram = true; }
+  else c.push({ ok: true, txt: 'Memória ' + ram.tipo + ' certa para a placa-mãe.' });
+  if (gpu.v === 'none' && !cpu.igpu) { c.push({ ok: false, txt: '(!) Este processador não tem vídeo integrado. Escolha uma placa de vídeo.' }); bad.gpu = true; }
+  else c.push({ ok: true, txt: gpu.v === 'none' ? 'Vídeo pelo processador.' : 'Placa de vídeo dedicada.' });
+  var consumo = cpu.w + gpu.w + 80;
+  if (gpu.rec && psu.w < gpu.rec) { c.push({ ok: false, txt: '(!) A placa de vídeo pede fonte de ' + gpu.rec + ' W. A escolhida tem ' + psu.w + ' W.' }); bad.psu = true; }
+  else if (consumo > psu.w * 0.8) { c.push({ ok: false, txt: '(!) A fonte vai trabalhar perto do limite. Escolha uma maior.' }); bad.psu = true; }
+  else c.push({ ok: true, txt: 'Fonte com folga para esta montagem.' });
+  return { checks: c, bad: bad, consumo: consumo, psuW: psu.w, alertas: c.filter(function (x) { return !x.ok; }).length };
+}
+
+/* Upgrade: resultados de exemplo por equipamento */
+var UPG = {
+  EQ001: { titulo: 'Notebook Dell Inspiron 15 3511', lido: [{ k: 'Processador', v: 'Intel Core i5-1135G7' }, { k: 'Memória', v: '8 GB DDR4' }, { k: 'Armazenamento', v: 'SSD 256 GB' }, { k: 'Sistema', v: 'Windows 11 Home' }, { k: 'Vídeo', v: 'Integrado ao processador' }],
+    itens: [
+      { comp: 'Memória RAM', icon: IC.ram, hoje: '8 GB', sug: '16 GB DDR4 3200 em dois pentes iguais', ganho: 'Alto', dif: 'Fácil', cuidado: 'Bateria interna: desconectar o cabo da bateria na placa antes de mexer.', conferir: 'Quantos slots estão livres e o máximo aceito, no manual do Inspiron 15 3511.' },
+      { comp: 'Armazenamento', icon: IC.disco, hoje: 'SSD 256 GB', sug: 'SSD NVMe M.2 de 1 TB', ganho: 'Médio', dif: 'Fácil', cuidado: 'Backup antes. Depois, clonar o disco ou reinstalar o sistema.', conferir: 'Tamanho do slot M.2 (2230 ou 2280) no manual do fabricante.' },
+      { comp: 'Bateria', icon: IC.bat, hoje: 'Original', sug: 'Bateria nova do mesmo modelo, se a saúde estiver baixa', ganho: 'Médio', dif: 'Média', cuidado: 'Usar só bateria indicada para o modelo.', conferir: 'Saúde da bateria no relatório do Windows (powercfg /batteryreport).' }
+    ],
+    fixo: ['Processador Intel Core i5-1135G7: soldado na placa, não troca.', 'Vídeo integrado: em notebook não dá para trocar.'] },
+  EQ002: { titulo: 'Desktop HP ProDesk 400 G6', lido: [{ k: 'Processador', v: 'Intel Core i5-10500' }, { k: 'Memória', v: '16 GB' }, { k: 'Armazenamento', v: 'HD 1 TB' }, { k: 'Sistema', v: 'Windows 11 Pro' }, { k: 'Vídeo', v: 'Integrado ao processador' }],
+    itens: [
+      { comp: 'Armazenamento', icon: IC.disco, hoje: 'HD 1 TB', sug: 'SSD de 500 GB ou 1 TB para o sistema, HD fica para arquivos', ganho: 'Alto', dif: 'Fácil', cuidado: 'Backup antes. Desligar da tomada e descarregar a estática.', conferir: 'Se a placa tem slot M.2 ou se o SSD precisa ser SATA de 2,5 polegadas.' },
+      { comp: 'Memória RAM', icon: IC.ram, hoje: '16 GB', sug: '32 GB DDR4 (só se o uso pedir)', ganho: 'Baixo', dif: 'Fácil', cuidado: 'Segurar os pentes pelas bordas.', conferir: 'Slots livres e velocidade aceita, no manual do ProDesk 400 G6.' },
+      { comp: 'Wi-Fi', icon: IC.wifi, hoje: 'A confirmar', sug: 'Adaptador Wi-Fi USB ou placa PCIe', ganho: 'Depende', dif: 'Fácil', cuidado: 'Instalar o driver do fabricante do adaptador.', conferir: 'Se este modelo já tem Wi-Fi (pendência anotada no projeto, OS002).' },
+      { comp: 'Placa de vídeo', icon: IC.gpu, hoje: 'Integrada', sug: 'Placa de perfil baixo, só se a fonte e o gabinete aceitarem', ganho: 'Depende', dif: 'Média', cuidado: 'Nunca abrir a fonte. Conferir os watts na etiqueta dela.', conferir: 'Potência da fonte original e espaço no gabinete.' }
+    ],
+    fixo: ['Processador: trocar nesta plataforma dá pouco ganho para o custo.'] },
+  EQ003: { titulo: 'Notebook Lenovo IdeaPad 3 15ALC6', lido: [{ k: 'Processador', v: 'AMD Ryzen 5 5500U' }, { k: 'Memória', v: '8 GB' }, { k: 'Armazenamento', v: 'SSD 512 GB' }, { k: 'Sistema', v: 'Linux Mint 21' }, { k: 'Vídeo', v: 'Integrado ao processador' }],
+    itens: [
+      { comp: 'Carregador', icon: IC.plug, hoje: 'Sem carregador', sug: 'Carregador original ou compatível com a mesma potência e conector', ganho: 'Alto', dif: 'Fácil', cuidado: 'Usar só carregador com a potência indicada na etiqueta.', conferir: 'Potência e conector na etiqueta embaixo do notebook.' },
+      { comp: 'Memória RAM', icon: IC.ram, hoje: '8 GB', sug: '16 GB, se houver slot livre', ganho: 'Depende', dif: 'Média', cuidado: 'Desconectar a bateria interna antes.', conferir: 'Se a memória é soldada (dúvida anotada pelo Aluno 1).' },
+      { comp: 'Armazenamento', icon: IC.disco, hoje: 'SSD 512 GB', sug: 'SSD NVMe M.2 de 1 TB', ganho: 'Médio', dif: 'Fácil', cuidado: 'Backup antes de trocar.', conferir: 'Tamanho do slot M.2 no manual da Lenovo.' },
+      { comp: 'Dobradiça', icon: IC.dobra, hoje: 'Esquerda frouxa', sug: 'Reaperto ou troca da dobradiça', ganho: 'Médio', dif: 'Média', cuidado: 'Abrir com cuidado para não forçar o cabo da tela.', conferir: 'Se a carcaça em volta da dobradiça está trincada.' }
+    ],
+    fixo: ['Processador AMD Ryzen 5 5500U: soldado na placa, não troca.'] }
+};
+var GANHO = { 'Alto': ['#DDF3E4', '#1B6E3C'], 'Médio': ['#DCEBFA', '#0B5CAD'], 'Baixo': ['#E6E6E6', '#3D3D3D'], 'Depende': ['#FDE7D3', '#7A3E00'] };
+
+function vazio() { return { tecnico: '', diagnostico: '', testes: '', servico: '', resultado: '', confirmada: false, observacoes: '' }; }
+function dados() {
+  var equips = [
+    { codigo: 'EQ001', tipo: 'Notebook', marca: 'Dell', modelo: 'Inspiron 15 3511', cpu: 'Intel Core i5-1135G7', ram: 8, disco: 'SSD 256 GB', so: 'Windows 11 Home', serie: 'SN-FICTICIO-0001', acess: 'Carregador original', cond: 'Pequenos arranhões na tampa. Teclado completo.' },
+    { codigo: 'EQ002', tipo: 'Desktop', marca: 'HP', modelo: 'ProDesk 400 G6', cpu: 'Intel Core i5-10500', ram: 16, disco: 'HD 1 TB', so: 'Windows 11 Pro', serie: null, acess: 'Cabo de energia e teclado', cond: 'Gabinete com poeira visível nas entradas de ar.' },
+    { codigo: 'EQ003', tipo: 'Notebook', marca: 'Lenovo', modelo: 'IdeaPad 3 15ALC6', cpu: 'AMD Ryzen 5 5500U', ram: 8, disco: 'SSD 512 GB', so: 'Linux Mint 21', serie: 'SN-FICTICIO-0003', acess: 'Nenhum', cond: 'Dobradiça esquerda um pouco frouxa. Sem carregador.' }
+  ];
+  function os(n, cli, eq, tipo, prio, sit, data, relato, info, hist) {
+    var i = vazio(); for (var k in info) i[k] = info[k];
+    return { numero: n, cliente: cli, equip: eq, tipo: tipo, prioridade: prio, situacao: sit, entrada: data, relato: relato, info: i, encerramento: sit === 'Encerrada' ? data : '', historico: hist };
+  }
+  function h0(data, sits) {
+    var out = [{ quando: data, texto: 'OS criada. Situação: Aberta.' }];
+    for (var i = 1; i < sits.length; i++) out.push({ quando: data, texto: sits[i - 1] + ' → ' + sits[i] + '.' });
+    return out;
+  }
+  var ordens = [
+    os('OS001', 'CL001', 'EQ001', 'Software', 'Média', 'Em serviço', '09/11/2026', 'O Windows está muito lento e os programas demoram para abrir.',
+      { tecnico: 'Técnico Exemplo', diagnostico: 'Provável excesso de programas na inicialização, deixando o disco em 100%.', testes: 'Gerenciador de Tarefas: disco em 100% e 12 programas na inicialização (exemplo fictício).' },
+      h0('09/11/2026', ['Aberta', 'Em diagnóstico', 'Em serviço'])),
+    os('OS002', 'CL002', 'EQ002', 'Rede', 'Alta', 'Encerrada', '10/11/2026', 'O Wi-Fi mostra conectado, mas as páginas não abrem.',
+      { tecnico: 'Técnico Exemplo', diagnostico: 'O computador provavelmente estava com um servidor DNS errado.', testes: 'ping 8.8.8.8 respondeu; ping com o nome de um site falhou; ipconfig /all mostrou DNS 192.0.2.99 (exemplo fictício).', servico: 'O DNS da placa de rede foi colocado em automático.', resultado: 'No exemplo, as páginas voltaram a abrir depois de repetir os testes 1 e 2.', confirmada: true },
+      [{ quando: '10/11/2026 08:30', texto: 'OS criada. Situação: Aberta.' }, { quando: '10/11/2026 08:50', texto: 'Aberta → Em diagnóstico.' }, { quando: '10/11/2026 09:30', texto: 'Informações técnicas atualizadas (técnico, diagnóstico, testes).' }, { quando: '10/11/2026 09:35', texto: 'Em diagnóstico → Em serviço.' }, { quando: '10/11/2026 10:10', texto: 'Informações técnicas atualizadas (resultado, observações).' }, { quando: '10/11/2026 10:15', texto: 'Em serviço → Encerrada.' }]),
+    os('OS003', 'CL003', 'EQ001', 'Software', 'Baixa', 'Em diagnóstico', '11/11/2026', 'A tela ficou com a imagem esticada depois de uma atualização do Windows.', {}, h0('11/11/2026', ['Aberta', 'Em diagnóstico'])),
+    os('OS004', 'CL002', 'EQ002', 'Hardware', 'Alta', 'Aberta', '12/11/2026', 'Ao ligar, o gabinete acende as luzes e as ventoinhas giram, mas o monitor fica sem imagem.', {}, h0('12/11/2026', ['Aberta'])),
+    os('OS005', 'CL001', 'EQ001', 'Hardware', 'Média', 'Em diagnóstico', '12/11/2026', 'O notebook trava de forma aleatória, às vezes reinicia sozinho e mostra telas azuis com mensagens diferentes.', {}, h0('12/11/2026', ['Aberta', 'Em diagnóstico'])),
+    os('OS006', 'CL003', 'EQ003', 'Hardware', 'Alta', 'Aguardando cliente', '13/11/2026', 'O notebook está cada vez mais lento, demora para iniciar e às vezes mostra erros de leitura.',
+      { tecnico: 'Técnico Exemplo', diagnostico: 'Suspeita de SSD degradado. Precisa de backup antes de ler o SMART.' },
+      h0('13/11/2026', ['Aberta', 'Em diagnóstico', 'Aguardando cliente']))
+  ];
+  return { equips: equips, ordens: ordens };
+}
+function agora() {
+  var d = new Date(); var p = function (n) { return String(n).padStart(2, '0'); };
+  return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+function txtErr(v, min, max) {
+  if (!v) return '';
+  if (v.length < min) return '(!) Escreva um pouco mais (mínimo ' + min + ' letras).';
+  if (v.length > max) return '(!) Passou do limite de ' + max + '. Tire um pouco.';
+  return '';
+}
+function pill(on) { return on ? 'gbtn on' : 'gbtn'; }
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    var d = dados();
+    this.state = {
+      view: 'inicio', slide: 0, auto: true, ordens: d.ordens, equips: d.equips, sel: 'OS001', selEq: 'EQ001',
+      busca: '', fSit: 'Todas', fTipo: 'Todos', novaSit: '', nota: '', sitErr: '', sitOk: '',
+      draft: Object.assign({}, d.ordens[0].info), infoErr: {}, infoOk: '', rel: false, copiado: false,
+      f: { cliente: '', equip: '', tipo: '', relato: '', prioridade: 'Média', tecnico: '' }, fErr: {}, ef: { tipo: '', marca: '', modelo: '', serie: '', cpu: '', ram: '', disco: '', so: '', acess: '', cond: '' }, efErr: {},
+      uso: '', mDesc: '', mErr: '', mSug: '', cfg: Object.assign({}, USOS[2].cfg), mNome: '', salvos: [], salvarErr: '',
+      upModo: 'arquivo', upFile: '', upEq: 'EQ001', upText: '', upEtapa: 0, upErr: '', upRes: null
+    };
+    this.timers = [];
+    try {
+      var sv = JSON.parse(localStorage.getItem('techlab-ia-site-v1') || 'null');
+      if (sv && sv.ordens && sv.equips) {
+        this.state.ordens = sv.ordens; this.state.equips = sv.equips; if (sv.salvos) this.state.salvos = sv.salvos;
+        var so = sv.ordens.find(function (o) { return o.numero === 'OS001'; }) || sv.ordens[0];
+        if (so) this.state.draft = Object.assign({}, so.info);
+      }
+    } catch (err) {}
+  }
+  componentDidUpdate() {
+    var st = this.state, sv0 = this._sv || {};
+    if (sv0.o !== st.ordens || sv0.e !== st.equips || sv0.s !== st.salvos) {
+      this._sv = { o: st.ordens, e: st.equips, s: st.salvos };
+      try { localStorage.setItem('techlab-ia-site-v1', JSON.stringify({ ordens: this.state.ordens, equips: this.state.equips, salvos: this.state.salvos })); } catch (err) {}
+    }
+  }
+  componentDidMount() { var self = this; this.iv = setInterval(function () { if (self.state.auto && self.state.view === 'inicio') self.setState({ slide: (self.state.slide + 1) % 3 }); }, 7000); }
+  componentWillUnmount() { this.timers.forEach(clearTimeout); clearInterval(this.iv); }
+  eqById(c) { return this.state.equips.find(function (e) { return e.codigo === c; }); }
+  selOS(n) {
+    var o = this.state.ordens.find(function (x) { return x.numero === n; });
+    this.setState({ view: 'ordens', sel: n, novaSit: '', nota: '', sitErr: '', sitOk: '', infoErr: {}, infoOk: '', rel: false, copiado: false, draft: Object.assign({}, o.info) });
+  }
+  updOS(n, fn) { this.setState({ ordens: this.state.ordens.map(function (o) { return o.numero === n ? fn(Object.assign({}, o)) : o; }) }); }
+  salvarInfo() {
+    var s = this.state, d = s.draft, e = {};
+    if (d.tecnico && d.tecnico.length < 3) e.tecnico = '(!) Escreva pelo menos 3 letras.';
+    else if (d.tecnico.length > 40) e.tecnico = '(!) Use no máximo 40 letras.';
+    ['diagnostico', 'testes', 'servico', 'resultado'].forEach(function (k) { var m = txtErr(d[k], 10, 300); if (m) e[k] = m; });
+    if (d.observacoes.length > 200) e.observacoes = '(!) Use no máximo 200 caracteres.';
+    if (Object.keys(e).length) { this.setState({ infoErr: e, infoOk: '' }); return; }
+    var o = s.ordens.find(function (x) { return x.numero === s.sel; });
+    var mud = Object.keys(d).filter(function (k) { return d[k] !== o.info[k]; });
+    if (!mud.length) { this.setState({ infoErr: {}, infoOk: 'Nada mudou.' }); return; }
+    var nomes = { tecnico: 'técnico', diagnostico: 'diagnóstico', testes: 'testes', servico: 'serviço', resultado: 'resultado', confirmada: 'confirmação', observacoes: 'observações' };
+    var linha = { quando: agora(), texto: 'Informações técnicas atualizadas (' + mud.map(function (k) { return nomes[k]; }).join(', ') + ').' };
+    this.updOS(s.sel, function (x) { x.info = Object.assign({}, d); x.historico = x.historico.concat([linha]); return x; });
+    this.setState({ infoErr: {}, infoOk: 'Informações salvas.' });
+  }
+  mudar() {
+    var s = this.state;
+    var o = s.ordens.find(function (x) { return x.numero === s.sel; });
+    var para = s.novaSit;
+    if (!para) { this.setState({ sitErr: '(!) Escolha a nova situação.', sitOk: '' }); return; }
+    var regra = TRANS[o.situacao].find(function (t) { return t[0] === para; });
+    var nota = s.nota.trim();
+    if (para === 'Em serviço' && (o.info.diagnostico || '').length < 10) { this.setState({ sitErr: '(!) Para ir a Em serviço, registre o diagnóstico em Informações técnicas e salve.' }); return; }
+    if (para === 'Encerrada' && (o.info.resultado || '').length < 10) { this.setState({ sitErr: '(!) Para encerrar, registre o resultado em Informações técnicas e salve.' }); return; }
+    if (para === 'Encerrada' && (o.info.tecnico || '').length < 3) { this.setState({ sitErr: '(!) Para encerrar, informe o técnico e salve.' }); return; }
+    if (regra[1] && nota.length < 10) { this.setState({ sitErr: '(!) Escreva uma nota explicando o motivo (mínimo 10 letras).' }); return; }
+    if (nota.length > 200) { this.setState({ sitErr: '(!) A nota pode ter no máximo 200 caracteres.' }); return; }
+    var de = o.situacao, q = agora();
+    this.updOS(s.sel, function (x) {
+      x.situacao = para;
+      if (para === 'Encerrada' || para === 'Cancelada') x.encerramento = q.slice(0, 10);
+      x.historico = x.historico.concat([{ quando: q, texto: de + ' → ' + para + '.' + (nota ? ' Nota: ' + nota : '') }]);
+      return x;
+    });
+    this.setState({ novaSit: '', nota: '', sitErr: '', sitOk: 'Situação mudada para ' + para + '.' });
+  }
+  proxOS() {
+    var max = 0; this.state.ordens.forEach(function (o) { var n = parseInt(o.numero.slice(2), 10); if (n > max) max = n; });
+    return 'OS' + String(max + 1).padStart(3, '0');
+  }
+  setEf(k, v) { var n = Object.assign({}, this.state.ef); n[k] = v; this.setState({ ef: n }); }
+  proxEq() {
+    var max = 0; this.state.equips.forEach(function (e) { var n = parseInt(e.codigo.slice(2), 10); if (n > max) max = n; });
+    return 'EQ' + String(max + 1).padStart(3, '0');
+  }
+  salvarEq() {
+    var s = this.state, f = s.ef, e = {};
+    var marca = f.marca.trim(), modelo = f.modelo.trim(), serie = f.serie.trim(), cpu = f.cpu.trim(), ram = f.ram.trim(), disco = f.disco.trim(), so = f.so.trim(), acess = f.acess.trim(), cond = f.cond.trim();
+    if (['Notebook', 'Desktop', 'All-in-one'].indexOf(f.tipo) < 0) e.tipo = '(!) Escolha Notebook, Desktop ou All-in-one.';
+    if (!marca) e.marca = '(!) Escreva a marca.'; else if (marca.length < 2) e.marca = '(!) Escreva pelo menos 2 letras.'; else if (marca.length > 40) e.marca = '(!) Use no máximo 40 letras.';
+    if (!modelo) e.modelo = '(!) Escreva o modelo.'; else if (modelo.length < 2) e.modelo = '(!) Escreva pelo menos 2 letras.'; else if (modelo.length > 60) e.modelo = '(!) Use no máximo 60 letras.';
+    if (serie && (serie.length < 3 || serie.length > 40)) e.serie = '(!) Escreva de 3 a 40 caracteres, ou deixe vazio.';
+    if (!cpu) e.cpu = '(!) Escreva o processador.'; else if (cpu.length < 2 || cpu.length > 60) e.cpu = '(!) Use de 2 a 60 caracteres.';
+    if (!ram) e.ram = '(!) Informe a RAM em GB.'; else if (!/^\d+$/.test(ram) || +ram < 1 || +ram > 256) e.ram = '(!) Use um número inteiro de 1 a 256.';
+    if (!/^(HD|SSD|NVMe)\s*\d/i.test(disco) || disco.length > 40) e.disco = '(!) Comece com HD ou SSD e informe o tamanho. Ex.: SSD 256 GB.';
+    if (!so) e.so = '(!) Escreva o sistema operacional.'; else if (so.length < 2 || so.length > 40) e.so = '(!) Use de 2 a 40 caracteres.';
+    if (acess && (acess.length < 2 || acess.length > 100)) e.acess = '(!) Escreva de 2 a 100 caracteres, ou deixe vazio.';
+    if (cond.length < 5) e.cond = '(!) Descreva a condição física (arranhões, peças faltando...).'; else if (cond.length > 200) e.cond = '(!) Passou do limite de 200. Tire um pouco.';
+    if (Object.keys(e).length) { this.setState({ efErr: e }); return; }
+    var cod = this.proxEq();
+    var novo = { codigo: cod, tipo: f.tipo, marca: marca, modelo: modelo, cpu: cpu, ram: +ram, disco: disco.replace(/^hd/i, 'HD').replace(/^ssd/i, 'SSD'), so: so, serie: serie || null, acess: acess || 'Nenhum', cond: cond };
+    this.setState({ equips: s.equips.concat([novo]), view: 'equip', selEq: cod, efErr: {}, ef: { tipo: '', marca: '', modelo: '', serie: '', cpu: '', ram: '', disco: '', so: '', acess: '', cond: '' } });
+  }
+  salvarOS() {
+    var s = this.state, f = s.f, e = {};
+    if (!f.cliente) e.cliente = '(!) Escolha o cliente.';
+    if (!f.equip) e.equip = '(!) Escolha o equipamento.';
+    if (!f.tipo) e.tipo = '(!) Escolha Hardware, Software ou Rede.';
+    if (!f.relato.trim()) e.relato = '(!) Conte o que o cliente relatou.';
+    else if (f.relato.length < 10) e.relato = '(!) Escreva um pouco mais (mínimo 10 letras).';
+    else if (f.relato.length > 200) e.relato = '(!) Passou do limite de 200. Tire um pouco.';
+    if (f.tecnico && f.tecnico.length < 3) e.tecnico = '(!) Escreva pelo menos 3 letras.';
+    else if (f.tecnico.length > 40) e.tecnico = '(!) Use no máximo 40 letras.';
+    if (Object.keys(e).length) { this.setState({ fErr: e }); return; }
+    var num = this.proxOS(), q = agora();
+    var info = vazio(); info.tecnico = f.tecnico;
+    var nova = { numero: num, cliente: f.cliente, equip: f.equip, tipo: f.tipo, prioridade: f.prioridade, situacao: 'Aberta', entrada: q.slice(0, 10), relato: f.relato, info: info, encerramento: '', historico: [{ quando: q, texto: 'OS criada. Situação: Aberta.' }] };
+    this.setState({ ordens: s.ordens.concat([nova]), f: { cliente: '', equip: '', tipo: '', relato: '', prioridade: 'Média', tecnico: '' }, fErr: {}, fSit: 'Todas', fTipo: 'Todos', busca: '' });
+    var self = this;
+    setTimeout(function () { self.selOS(num); self.setState({ sitOk: 'Ordem ' + num + ' criada com sucesso.' }); }, 0);
+  }
+  relTexto(o, eq) {
+    var i = o.info;
+    return ['RELATÓRIO TÉCNICO | ' + o.numero, '', 'Cliente: ' + o.cliente + ' | ' + CLIENTES[o.cliente], 'Equipamento: ' + eq.codigo + ' | ' + eq.tipo + ' ' + eq.marca + ' ' + eq.modelo, 'Configuração: ' + eq.cpu + ', ' + eq.ram + ' GB de RAM, ' + eq.disco + ', ' + eq.so, 'Condição na entrada: ' + eq.cond, 'Tipo do problema: ' + o.tipo, 'Técnico: ' + (i.tecnico || 'Não informado'), 'Data de entrada: ' + o.entrada, 'Situação: ' + o.situacao, '', '1. RELATO DO CLIENTE', o.relato, '', '2. DIAGNÓSTICO PROVÁVEL (hipótese)', i.diagnostico || 'Não registrado', '', '3. TESTES EXECUTADOS', i.testes || 'Nenhum registrado', '', '4. SERVIÇO REALIZADO', i.servico || 'Não registrado', '', '5. CONCLUSÃO', 'Confirmada por teste? ' + (i.confirmada ? 'Sim' : 'Não'), i.resultado || 'Não registrada', '', '6. PENDÊNCIAS E RECOMENDAÇÕES', i.observacoes || 'Nenhuma registrada.', '', '7. HISTÓRICO', o.historico.map(function (h) { return h.quando + ' ' + h.texto; }).join('\n'), '', 'Dados FICTÍCIOS.'].join('\n');
+  }
+  sugerir() {
+    var s = this.state, uso = s.uso, t = s.mDesc.toLowerCase();
+    if (!uso && t) {
+      if (/v[ií]deo|edi[cç]|render|premiere|davinci/.test(t)) uso = 'video';
+      else if (/jog|game|fps|steam/.test(t)) uso = 'jogos';
+      else if (/program|c[oó]digo|dev|python|java/.test(t)) uso = 'prog';
+      else uso = 'estudo';
+    }
+    if (!uso) { this.setState({ mErr: '(!) Escolha um uso ou descreva o que você quer fazer.', mSug: '' }); return; }
+    var u = USOS.find(function (x) { return x.v === uso; });
+    this.setState({ uso: uso, cfg: Object.assign({}, u.cfg), mErr: '', mSug: 'Sugestão para ' + u.l + ' carregada. Troque as peças se quiser.', mNome: u.l });
+  }
+  salvarCfg() {
+    var s = this.state;
+    if (s.salvos.length >= 3) { this.setState({ salvarErr: '(!) Já tem 3 montagens. Remova uma para salvar outra.' }); return; }
+    var nome = s.mNome.trim() || ('Montagem ' + 'ABC'[s.salvos.length]);
+    this.setState({ salvos: s.salvos.concat([{ nome: nome, cfg: Object.assign({}, s.cfg) }]), salvarErr: '', mNome: '' });
+  }
+  lerUpgrade() {
+    var s = this.state, eqc = null, origem = '';
+    if (s.upModo === 'arquivo') { if (!s.upFile) { this.setState({ upErr: '(!) Escolha um PDF ou uma foto da tela.' }); return; } eqc = 'EQ001'; origem = 'Lido de ' + s.upFile + ' (simulado)'; }
+    if (s.upModo === 'oficina') { eqc = s.upEq; origem = 'Ficha da oficina ' + s.upEq; }
+    if (s.upModo === 'texto') {
+      if (s.upText.trim().length < 10) { this.setState({ upErr: '(!) Escreva um pouco mais sobre a máquina (mínimo 10 letras).' }); return; }
+      var t = s.upText.toLowerCase();
+      eqc = /hp|prodesk|desktop/.test(t) ? 'EQ002' : (/lenovo|ideapad|ryzen/.test(t) ? 'EQ003' : 'EQ001');
+      origem = 'Lido do texto digitado (simulado)';
+    }
+    var self = this;
+    this.timers.forEach(clearTimeout); this.timers = [];
+    this.setState({ upErr: '', upEtapa: 1, upRes: { eq: eqc, origem: origem, modo: s.upModo } });
+    [2, 3, 4, 5].forEach(function (n, i) { self.timers.push(setTimeout(function () { self.setState({ upEtapa: n }); }, 750 * (i + 1))); });
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var chip = function (n) { return SIT[n]; };
+    var ativos = s.ordens.filter(function (o) { return o.situacao !== 'Encerrada' && o.situacao !== 'Cancelada'; }).length;
+    var navView = s.view === 'nova' ? 'ordens' : s.view === 'novoeq' ? 'equip' : s.view;
+    var nav = [['inicio', 'Início'], ['ordens', 'Ordens'], ['equip', 'Equipamentos'], ['ajuda', 'Ajuda']].map(function (n) {
+      var on = navView === n[0];
+      return { label: n[1], current: on ? 'page' : 'false', cls: on ? 'nbtn on' : 'nbtn', go: function () { self.setState({ view: n[0] }); } };
+    });
+    var go = function (v) { return function () { self.setState({ view: v }); }; };
+    var SL = [
+      { eyebrow: 'Monte e compare', t1: 'Monte o seu', t2: 'computador', txt: 'Diga o que você quer fazer com a máquina. As peças são sugeridas, conferidas uma com a outra e guardadas para comparar lado a lado.', cta: 'Montar PC', go: go('montar'), cta2: 'Ver equipamentos', go2: go('equip') },
+      { eyebrow: 'Upgrade', t1: 'Mais da máquina', t2: 'que você já tem', txt: 'Envie um PDF ou uma foto da tela de configurações. O sistema lê as peças e mostra o que dá para trocar, com o ganho e o cuidado de cada troca.', cta: 'Fazer upgrade', go: go('upgrade'), cta2: 'Como funciona', go2: go('ajuda') },
+      { eyebrow: 'Oficina', t1: 'Da bancada ao', t2: 'relatório', txt: 'Ordens de serviço com roteiro de diagnóstico, testes seguros, histórico que não se apaga e relatório técnico pronto para imprimir.', cta: 'Ver ordens', go: go('ordens'), cta2: 'Nova ordem', go2: function () { self.setState({ view: 'nova', fErr: {} }); } }
+    ];
+    var si = s.slide;
+    var setSl = function (i) { self.setState({ slide: (i + 3) % 3, auto: false }); };
+    var dots = SL.map(function (x, i) { return { label: 'Destaque ' + (i + 1) + ': ' + x.eyebrow, cur: i === si ? 'true' : 'false', c: i === si ? '#a78bfa' : '#4651b8', go: function () { setSl(i); } }; });
+    var stats = [{ n: s.ordens.length, l: 'Ordens no total' }, { n: ativos, l: 'Em andamento' }, { n: s.equips.length, l: 'Equipamentos' }, { n: s.salvos.length, l: 'Montagens salvas' }];
+    var cards = [
+      { n: '01', cat: 'Monte e compare', t: 'Montar PC', d: 'Sugestão por uso, conferência de encaixe, memória e fonte, e comparação de até 3 montagens.', icon: IC.hw, go: go('montar') },
+      { n: '02', cat: 'Máquina existente', t: 'Upgrade', d: 'Leitura de PDF, foto ou texto e as trocas possíveis, com ganho, dificuldade e cuidado.', icon: IC.up, go: go('upgrade') },
+      { n: '03', cat: 'Fluxo da OS', t: 'Ordens de serviço', d: 'Seis situações, regras de mudança, roteiro de diagnóstico e relatório técnico.', icon: IC.ordens, go: go('ordens') },
+      { n: '04', cat: 'Cadastro', t: 'Equipamentos', d: 'Ficha completa de cada máquina, suas ordens e o atalho para abrir uma OS.', icon: IC.note, go: go('equip') }
+    ];
+    var bancada = s.ordens.filter(function (x) { return x.situacao !== 'Encerrada' && x.situacao !== 'Cancelada'; }).map(function (x) { var e = self.eqById(x.equip); return { numero: x.numero, equip: e.marca + ' ' + e.modelo, relato: x.relato, tipo: x.tipo, prioridade: x.prioridade, entrada: x.entrada, situacao: x.situacao, s: SIT[x.situacao], pick: function () { self.selOS(x.numero); } }; });
+    var tiles = SIT_NOMES.map(function (n) {
+      var c = chip(n), on = s.fSit === n;
+      return { label: n, n: s.ordens.filter(function (o) { return o.situacao === n; }).length, bg: c.bg, fg: c.fg, cbd: c.bd, icon: c.icon, on: on ? 'true' : 'false', ring: on ? '2px solid #0f1646' : '0 solid transparent', pick: function () { self.setState({ fSit: on ? 'Todas' : n }); } };
+    });
+    var tipoPills = ['Todos', 'Hardware', 'Software', 'Rede'].map(function (t) {
+      var on = s.fTipo === t;
+      return { label: t, icon: TIPO_IC[t] || IC.todos, on: on ? 'true' : 'false', cls: pill(on), pick: function () { self.setState({ fTipo: t }); } };
+    });
+    var b = s.busca.toLowerCase();
+    var lista = s.ordens.filter(function (o) {
+      if (s.fSit !== 'Todas' && o.situacao !== s.fSit) return false;
+      if (s.fTipo !== 'Todos' && o.tipo !== s.fTipo) return false;
+      if (!b) return true;
+      var eq = self.eqById(o.equip);
+      return [o.numero, o.cliente, CLIENTES[o.cliente], o.info.tecnico, o.equip, eq.marca, eq.modelo, o.relato].join(' ').toLowerCase().indexOf(b) >= 0;
+    }).map(function (o) {
+      var eq = self.eqById(o.equip), on = s.sel === o.numero;
+      return { numero: o.numero, situacao: o.situacao, s: chip(o.situacao), tipo: o.tipo, tipoIcon: TIPO_IC[o.tipo], prioridade: o.prioridade, prioCor: o.prioridade === 'Alta' ? '#5b21b6' : '#0f1646', relato: o.relato, cliente: o.cliente + ' | ' + CLIENTES[o.cliente], equip: o.equip + ' | ' + eq.tipo + ' ' + eq.marca, on: on ? 'true' : 'false', ring: on ? '2px solid #0f1646' : '0 solid transparent', bg: on ? '#ffffff' : '#ffffff', pick: function () { self.selOS(o.numero); } };
+    });
+
+    var o = s.ordens.find(function (x) { return x.numero === s.sel; });
+    var d = null;
+    if (o) {
+      var eqO = this.eqById(o.equip), fim = o.situacao === 'Encerrada' || o.situacao === 'Cancelada';
+      var rot = ROT[o.numero] || { id: 'Sem roteiro', titulo: 'ainda não cadastrado', teste: 'Esta ordem ainda não tem roteiro de diagnóstico.', cuidado: 'Siga as regras de segurança da Ajuda.', limite: '', origem: 'Nova ordem' };
+      d = {
+        numero: o.numero, situacao: o.situacao, s: chip(o.situacao), relato: o.relato, travada: fim, aberta: !fim,
+        ficha: [{ k: 'Data de entrada', v: o.entrada }, { k: 'Cliente', v: o.cliente + ' | ' + CLIENTES[o.cliente] }, { k: 'Tipo', v: o.tipo }, { k: 'Prioridade', v: o.prioridade }, { k: 'Técnico', v: o.info.tecnico || 'Não informado' }, { k: 'Equipamento', v: eqO.codigo + ' | ' + eqO.tipo }],
+        eqNome: eqO.marca + ' ' + eqO.modelo, eqConfig: eqO.cpu + ' · ' + eqO.ram + ' GB · ' + eqO.disco + ' · ' + eqO.so,
+        verFicha: function () { self.setState({ view: 'equip', selEq: eqO.codigo }); },
+        verUpgrade: function () { self.setState({ view: 'upgrade', upModo: 'oficina', upEq: eqO.codigo, upEtapa: 0, upRes: null }); },
+        rot: { id: rot.id, titulo: rot.titulo, teste: rot.teste, cuidado: rot.cuidado, limite: rot.limite, temLimite: !!rot.limite, origem: rot.origem },
+        historico: o.historico,
+        relCab: [{ k: 'Cliente', v: o.cliente + ' | ' + CLIENTES[o.cliente] }, { k: 'Equipamento', v: eqO.codigo + ' | ' + eqO.marca + ' ' + eqO.modelo }, { k: 'Configuração', v: eqO.cpu + ', ' + eqO.ram + ' GB, ' + eqO.disco + ', ' + eqO.so }, { k: 'Condição na entrada', v: eqO.cond }, { k: 'Tipo do problema', v: o.tipo }, { k: 'Prioridade', v: o.prioridade }, { k: 'Técnico', v: o.info.tecnico || 'Não informado' }, { k: 'Entrada', v: o.entrada }, { k: 'Encerramento', v: o.encerramento || 'Em aberto' }, { k: 'Situação', v: o.situacao }],
+        relSec: [
+          { t: '1. Relato do cliente', v: o.relato },
+          { t: '2. Diagnóstico provável (hipótese, ainda não é prova)', v: o.info.diagnostico || 'Não registrado.' },
+          { t: '3. Testes executados (só o que foi feito de verdade)', v: o.info.testes || 'Nenhum registrado.' },
+          { t: '4. Serviço realizado', v: o.info.servico || 'Não registrado.' },
+          { t: '5. Conclusão', v: 'Confirmada por teste? ' + (o.info.confirmada ? 'Sim' : 'Não') + '\n' + (o.info.resultado || 'Não registrada.') },
+          { t: '6. Pendências e recomendações', v: o.info.observacoes || 'Nenhuma registrada.' },
+          { t: '7. Histórico de situações', v: o.historico.map(function (h) { return h.quando + '  ' + h.texto; }).join('\n') }
+        ]
+      };
+    }
+    var defs = [['tecnico', 'Técnico', false, 40], ['diagnostico', 'Diagnóstico provável (hipótese, ainda não é prova)', true, 300], ['testes', 'Testes executados (só o que foi feito de verdade)', true, 300], ['servico', 'Serviço realizado', true, 300], ['resultado', 'Resultado', true, 300], ['observacoes', 'Observações', true, 200]];
+    var infoCampos = defs.map(function (c) {
+      var v = s.draft[c[0]] || '', err = s.infoErr[c[0]] || '';
+      return { id: 'i_' + c[0], label: c[1], multi: c[2], single: !c[2], value: v, count: v.length + '/' + c[3], err: err, hasErr: !!err, bd: err ? '#B3261E' : 'rgba(15,22,70,0.16)', onChange: function (e) { var nd = Object.assign({}, self.state.draft); nd[c[0]] = e.target.value; self.setState({ draft: nd, infoOk: '' }); } };
+    });
+    var opcoes = o ? TRANS[o.situacao].map(function (t) { return { v: t[0], l: t[0] + (t[1] ? ' (pede nota)' : '') }; }) : [];
+    var regra = o && s.novaSit ? TRANS[o.situacao].find(function (t) { return t[0] === s.novaSit; }) : null;
+
+    var f = s.f, fe = {};
+    ['cliente', 'equip', 'tipo', 'relato', 'tecnico'].forEach(function (k) { fe[k] = s.fErr[k] || ''; fe[k + 'Bd'] = s.fErr[k] ? '#B3261E' : 'rgba(15,22,70,0.16)'; });
+    var nErr = Object.keys(s.fErr).length;
+    var setF = function (k, v) { var nf = Object.assign({}, self.state.f); nf[k] = v; self.setState({ f: nf }); };
+
+    var eqSel = this.eqById(s.selEq) || s.equips[0];
+    var eqLista = s.equips.map(function (e) {
+      var on = e.codigo === eqSel.codigo;
+      var and = s.ordens.filter(function (x) { return x.equip === e.codigo && x.situacao !== 'Encerrada' && x.situacao !== 'Cancelada'; }).length;
+      return { codigo: e.codigo, tipo: e.tipo, icon: EQ_IC[e.tipo], nome: e.marca + ' ' + e.modelo, resumo: e.ram + ' GB · ' + e.disco + ' · ' + e.so, andamento: and === 1 ? '1 OS em andamento' : and + ' OS em andamento', on: on ? 'true' : 'false', ring: on ? '2px solid #0f1646' : '0 solid transparent', pick: function () { self.setState({ selEq: e.codigo }); } };
+    });
+    var eq = {
+      codigo: eqSel.codigo, nome: eqSel.marca + ' ' + eqSel.modelo,
+      ficha: [{ k: 'Tipo', v: eqSel.tipo }, { k: 'Marca', v: eqSel.marca }, { k: 'Modelo', v: eqSel.modelo }, { k: 'Número de série', v: eqSel.serie || 'Não informado' }, { k: 'CPU', v: eqSel.cpu }, { k: 'RAM', v: eqSel.ram + ' GB' }, { k: 'Disco', v: eqSel.disco }, { k: 'Sistema operacional', v: eqSel.so }, { k: 'Acessórios', v: eqSel.acess }, { k: 'Condição física', v: eqSel.cond }],
+      ordens: s.ordens.filter(function (x) { return x.equip === eqSel.codigo; }).map(function (x) { return { numero: x.numero, situacao: x.situacao, s: chip(x.situacao), rotulo: x.tipo + ' · ' + (ROT[x.numero] ? ROT[x.numero].id + ' ' + ROT[x.numero].titulo : x.relato), pick: function () { self.selOS(x.numero); } }; }),
+      abrirOS: function () { var nf = Object.assign({}, self.state.f); nf.equip = eqSel.codigo; self.setState({ view: 'nova', f: nf, fErr: {} }); },
+      upgrade: function () { self.setState({ view: 'upgrade', upModo: 'oficina', upEq: eqSel.codigo, upEtapa: 0, upRes: null }); }
+    };
+
+    /* Montar */
+    var av = avaliar(s.cfg);
+    var usos = USOS.map(function (u) { var on = s.uso === u.v; return { label: u.l, icon: u.icon, on: on ? 'true' : 'false', cls: pill(on), pick: function () { self.setState({ uso: u.v, mErr: '' }); } }; });
+    var pecas = CAT_KEYS.map(function (k) {
+      var cur = pick(k, s.cfg[k]), bad = !!av.bad[k];
+      return { id: 'm_' + k, label: CAT[k].label, icon: CAT[k].icon, value: cur.v, info: cur.info, bad: bad, bd: bad ? '#B3261E' : 'rgba(15,22,70,0.16)', opts: CAT[k].opts.map(function (x) { return { v: x.v, l: x.l }; }), onChange: function (e) { var nc = Object.assign({}, self.state.cfg); nc[k] = e.target.value; self.setState({ cfg: nc, mSug: '' }); } };
+    });
+    var checks = av.checks.map(function (c) { return { txt: c.txt, icon: c.ok ? IC.enc : 'M12 7v6M12 17h.01', bg: c.ok ? '#DDF3E4' : '#FBE3E1', fg: c.ok ? '#1B6E3C' : '#B3261E', fw: c.ok ? 500 : 700 }; });
+    var pct = Math.min(100, Math.round(av.consumo / av.psuW * 100));
+    var salvosAv = s.salvos.map(function (x) { return avaliar(x.cfg); });
+    var cmpDefs = CAT_KEYS.map(function (k) { return { label: CAT[k].label, get: function (c) { return pick(k, c[k]).l; } }; });
+    cmpDefs.push({ label: 'Consumo estimado', get: function (c) { return avaliar(c).consumo + ' W'; } });
+    cmpDefs.push({ label: 'Conferência', get: function (c) { var a = avaliar(c).alertas; return a ? '(!) ' + a + (a === 1 ? ' alerta' : ' alertas') : 'Tudo combina'; }, alert: true });
+    cmpDefs.push({ label: 'Preço', get: function () { return 'Busca na internet na versão final'; }, nodiff: true });
+    var cmpRows = cmpDefs.map(function (r) {
+      var vals = s.salvos.map(function (x) { return r.get(x.cfg); });
+      var differ = !r.nodiff && vals.some(function (v) { return v !== vals[0]; }) && vals.length > 1;
+      return { label: r.label, cells: vals.map(function (v) { var al = r.alert && v.indexOf('(!)') === 0; return { v: v, diff: differ, fw: differ || al ? 700 : 500, fg: al ? '#B3261E' : (r.nodiff ? '#4d5588' : '#0f1646') }; }) };
+    });
+    var salvos = s.salvos.map(function (x, i) { return { letra: 'ABC'[i], nome: x.nome, remover: function () { self.setState({ salvos: self.state.salvos.filter(function (_, j) { return j !== i; }), salvarErr: '' }); }, carregar: function () { self.setState({ cfg: Object.assign({}, x.cfg), mNome: x.nome, mSug: 'Montagem ' + 'ABC'[i] + ' carregada para editar.' }); } }; });
+
+    /* Upgrade */
+    var upModos = [['arquivo', 'PDF ou foto'], ['oficina', 'Da oficina'], ['texto', 'Digitar']].map(function (m) { var on = s.upModo === m[0]; return { label: m[1], on: on ? 'true' : 'false', cls: pill(on), pick: function () { self.setState({ upModo: m[0], upErr: '' }); } }; });
+    var upEquips = s.equips.filter(function (e) { return UPG[e.codigo]; }).map(function (e) { var on = s.upEq === e.codigo; return { codigo: e.codigo, nome: e.tipo + ' ' + e.marca + ' ' + e.modelo, on: on ? 'true' : 'false', cls: pill(on), pick: function () { self.setState({ upEq: e.codigo, upErr: '' }); } }; });
+    var passTxt = [s.upModo === 'oficina' ? 'Lendo a ficha do equipamento' : 'Lendo o arquivo e reconhecendo o texto', 'Identificando os componentes', 'Buscando compatibilidade na internet', 'Montando as sugestões'];
+    var upPassos = passTxt.map(function (t, i) { var n = i + 1, done = s.upEtapa > n, cur = s.upEtapa === n; return { txt: t + (cur ? '...' : ''), icon: done ? IC.enc : 'M12 12h.01', bg: done ? '#1B6E3C' : (cur ? '#6d28d9' : 'rgba(15,22,70,0.25)'), fw: cur ? 800 : 500, op: done || cur ? 1 : 0.55 }; });
+    var up = { titulo: '', origem: '', lido: [], itens: [], fixo: [], temEq: false };
+    if (s.upRes && UPG[s.upRes.eq]) {
+      var U = UPG[s.upRes.eq];
+      up = { titulo: s.upRes.modo === 'oficina' ? s.upRes.eq + ' | ' + U.titulo : U.titulo, origem: s.upRes.origem, lido: U.lido, fixo: U.fixo, temEq: s.upRes.modo === 'oficina',
+        itens: U.itens.map(function (i) { var g = GANHO[i.ganho] || GANHO['Depende']; return Object.assign({}, i, { gBg: g[0], gFg: g[1] }); }) };
+    }
+
+    return {
+      isInicio: s.view === 'inicio', slide: SL[si], isS0: si === 0, isS1: si === 1, isS2: si === 2, slideNum: '0' + (si + 1) + ' / 03', dots: dots,
+      prevSlide: function () { setSl(si - 1); }, nextSlide: function () { setSl(si + 1); },
+      stats: stats, cards: cards, bancada: bancada,
+      goInicio: go('inicio'), goEquip: go('equip'), goAjuda: go('ajuda'), ctaMontar: s.view === 'montar' ? 'obtn' : 'obtn',
+      nav: nav, isOrdens: s.view === 'ordens', isNova: s.view === 'nova', isEquip: s.view === 'equip', isAjuda: s.view === 'ajuda', isMontar: s.view === 'montar', isUpgrade: s.view === 'upgrade',
+      dockMontar: s.view === 'montar' ? 'gbtn on' : 'gbtn', dockUpgrade: s.view === 'upgrade' ? 'gbtn on' : 'gbtn',
+      goMontar: function () { self.setState({ view: 'montar' }); }, goUpgrade: function () { self.setState({ view: 'upgrade' }); },
+      resumo: s.ordens.length + ' ordens no total, ' + ativos + ' em andamento',
+      goNova: function () { self.setState({ view: 'nova', fErr: {} }); }, goOrdens: function () { self.setState({ view: 'ordens' }); },
+      tiles: tiles, tipoPills: tipoPills, sitNomes: SIT_NOMES, busca: s.busca, fSit: s.fSit,
+      onBusca: function (e) { self.setState({ busca: e.target.value }); }, onFSit: function (e) { self.setState({ fSit: e.target.value }); },
+      lista: lista, listaVazia: lista.length === 0, contagemLista: lista.length === 1 ? '1 ordem' : lista.length + ' ordens',
+      semSel: !d, mostraDetalhe: !!d && !s.rel, mostraRel: !!d && s.rel, d: d || { s: SIT['Aberta'], rot: {}, ficha: [], historico: [], relCab: [], relSec: [] },
+      draft: s.draft, infoCampos: infoCampos, infoOk: s.infoOk,
+      onConf: function (e) { var nd = Object.assign({}, self.state.draft); nd.confirmada = e.target.checked; self.setState({ draft: nd, infoOk: '' }); },
+      salvarInfo: function () { self.salvarInfo(); },
+      opcoes: opcoes, novaSit: s.novaSit, nota: s.nota, sitErr: s.sitErr, sitOk: s.sitOk,
+      notaLabel: regra && regra[1] ? 'Nota * (obrigatória nesta mudança)' : 'Nota', notaCount: s.nota.length + '/200',
+      onNovaSit: function (e) { self.setState({ novaSit: e.target.value, sitErr: '', sitOk: '' }); },
+      onNota: function (e) { self.setState({ nota: e.target.value }); },
+      mudar: function () { self.mudar(); },
+      abrirRel: function () { self.setState({ rel: true, copiado: false }); }, fecharRel: function () { self.setState({ rel: false }); },
+      imprimir: function () { try { window.print(); } catch (err) {} },
+      copiarLabel: s.copiado ? 'Copiado' : 'Copiar como texto',
+      copiar: function () { var oo = self.state.ordens.find(function (x) { return x.numero === self.state.sel; }); try { navigator.clipboard.writeText(self.relTexto(oo, self.eqById(oo.equip))).catch(function () {}); } catch (err) {} self.setState({ copiado: true }); },
+      proxOS: this.proxOS(), f: f, fe: fe, fResumo: nErr ? '(!) Corrija ' + nErr + (nErr === 1 ? ' campo abaixo.' : ' campos abaixo.') : '',
+      clientesOpt: Object.keys(CLIENTES).map(function (k) { return { v: k, l: k + ' | ' + CLIENTES[k] }; }),
+      equipsOpt: s.equips.map(function (e) { return { v: e.codigo, l: e.codigo + ' | ' + e.tipo + ' ' + e.marca + ' ' + e.modelo }; }),
+      fTipos: ['Hardware', 'Software', 'Rede'].map(function (t) { var on = f.tipo === t; return { label: t, icon: TIPO_IC[t], on: on ? 'true' : 'false', cls: pill(on), pick: function () { setF('tipo', t); } }; }),
+      fPrios: ['Baixa', 'Média', 'Alta'].map(function (t) { var on = f.prioridade === t; return { label: t, on: on ? 'true' : 'false', cls: pill(on), pick: function () { setF('prioridade', t); } }; }),
+      fRelCount: f.relato.length + '/200',
+      onFCli: function (e) { setF('cliente', e.target.value); }, onFEq: function (e) { setF('equip', e.target.value); },
+      onFRel: function (e) { setF('relato', e.target.value); }, onFTec: function (e) { setF('tecnico', e.target.value); },
+      salvarOS: function () { self.salvarOS(); },
+      isNovoEq: s.view === 'novoeq', proxEq: this.proxEq(),
+      goNovoEq: function () { self.setState({ view: 'novoeq', efErr: {} }); }, goEquip: function () { self.setState({ view: 'equip' }); },
+      ef: s.ef, efe: (function () { var o = {}; ['tipo', 'marca', 'modelo', 'serie', 'cpu', 'ram', 'disco', 'so', 'acess', 'cond'].forEach(function (k) { o[k] = s.efErr[k] || ''; o[k + 'Bd'] = s.efErr[k] ? '#B3261E' : 'rgba(15,22,70,0.16)'; }); return o; })(),
+      efResumo: Object.keys(s.efErr).length ? '(!) Corrija ' + Object.keys(s.efErr).length + (Object.keys(s.efErr).length === 1 ? ' campo abaixo.' : ' campos abaixo.') : '',
+      efCondCount: s.ef.cond.length + '/200',
+      eqTipos: ['Notebook', 'Desktop', 'All-in-one'].map(function (t) { var on = s.ef.tipo === t; return { label: t, icon: EQ_IC[t], on: on ? 'true' : 'false', cls: pill(on), pick: function () { var n = Object.assign({}, self.state.ef); n.tipo = t; self.setState({ ef: n }); } }; }),
+      onEfMarca: function (e) { self.setEf('marca', e.target.value); }, onEfModelo: function (e) { self.setEf('modelo', e.target.value); }, onEfSerie: function (e) { self.setEf('serie', e.target.value); },
+      onEfCpu: function (e) { self.setEf('cpu', e.target.value); }, onEfRam: function (e) { self.setEf('ram', e.target.value); }, onEfDisco: function (e) { self.setEf('disco', e.target.value); },
+      onEfSo: function (e) { self.setEf('so', e.target.value); }, onEfAcess: function (e) { self.setEf('acess', e.target.value); }, onEfCond: function (e) { self.setEf('cond', e.target.value); },
+      salvarEq: function () { self.salvarEq(); },
+      eqLista: eqLista, eq: eq,
+
+      usos: usos, mDesc: s.mDesc, mErr: s.mErr, mSug: s.mSug,
+      onMDesc: function (e) { self.setState({ mDesc: e.target.value, mErr: '' }); },
+      sugerir: function () { self.sugerir(); },
+      pecas: pecas, checks: checks, consumo: av.consumo, fonteW: av.psuW,
+      usoFonte: pct + '%', usoFonteCor: pct > 80 ? '#B3261E' : (pct > 60 ? '#E0A800' : '#1B6E3C'),
+      usoFonteLabel: 'A montagem usa cerca de ' + pct + '% da fonte' + (pct > 80 ? ' (!) pouca folga.' : '.'),
+      mNome: s.mNome, onMNome: function (e) { self.setState({ mNome: e.target.value }); },
+      salvarCfg: function () { self.salvarCfg(); }, salvarErr: s.salvarErr, nSalvos: s.salvos.length,
+      semSalvos: s.salvos.length === 0, temSalvos: s.salvos.length > 0, salvos: salvos, cmpRows: cmpRows,
+      cmpCols: 'repeat(' + Math.max(1, s.salvos.length) + ', minmax(0, 1fr))',
+
+      upModos: upModos, upIsArquivo: s.upModo === 'arquivo', upIsOficina: s.upModo === 'oficina', upIsTexto: s.upModo === 'texto',
+      upFileLabel: s.upFile ? s.upFile : 'Enviar PDF ou foto da tela',
+      onUpFile: function (e) { var fl = e.target.files && e.target.files[0]; self.setState({ upFile: fl ? fl.name : '', upErr: '' }); },
+      upEquips: upEquips, upText: s.upText, onUpText: function (e) { self.setState({ upText: e.target.value, upErr: '' }); },
+      upErr: s.upErr, lerUpgrade: function () { self.lerUpgrade(); },
+      upIdle: s.upEtapa === 0, upRodando: s.upEtapa > 0 && s.upEtapa < 5, upPronto: s.upEtapa === 5,
+      upPassos: upPassos, up: up,
+      upAbrirOS: function () { var r = self.state.upRes; self.setState({ view: 'nova', fErr: {}, f: { cliente: '', equip: r.eq, tipo: 'Hardware', relato: 'Cliente pediu orçamento de upgrade.', prioridade: 'Baixa', tecnico: '' } }); },
+      upNovo: function () { self.setState({ upEtapa: 0, upRes: null, upFile: '' }); },
+
+      passos: [{ n: '01', t: 'Receber o computador', d: 'Cadastre em Equipamentos.' }, { n: '02', t: 'Abrir a OS', d: 'Nova ordem, com o relato do cliente.' }, { n: '03', t: 'Investigar', d: 'Siga o roteiro e registre só testes feitos.' }, { n: '04', t: 'Executar o serviço', d: 'Com o diagnóstico registrado.' }, { n: '05', t: 'Encerrar e gerar o relatório', d: 'Resultado e técnico preenchidos.' }],
+      sitAjuda: SIT_NOMES.map(function (n) { var c = SIT[n]; return { nome: n, bg: c.bg, fg: c.fg, bd: c.bd, icon: c.icon, sig: c.sig }; }),
+      seguranca: SEGURANCA,
+      resetar: function () { var dd = dados(); self.setState({ ordens: dd.ordens, equips: dd.equips, view: 'ordens', sel: 'OS001', selEq: 'EQ001', draft: Object.assign({}, dd.ordens[0].info), busca: '', fSit: 'Todas', fTipo: 'Todos', rel: false, sitOk: '', sitErr: '', infoOk: '', infoErr: {} }); }
+    };
+  }
+}
+
+;return (typeof Component!=="undefined"&&Component)||undefined;};</script>
+<script>(function () {
+var et=/^[A-Za-z_$][A-Za-z0-9_$]*/,Gt=/^-?\d+(\.\d+)?$/;function P(t,n){const e=String(n).trim();if(!e)return;if(e[0]==="("&&e[e.length-1]===")"&&Ft(e))return P(t,e.slice(1,-1));const o=Bt(e);if(o){const r=P(t,e.slice(0,o.index)),s=P(t,e.slice(o.index+o.op.length));switch(o.op){case"===":return r===s;case"!==":return r!==s;case"==":return r==s;default:return r!=s}}if(e[0]==="!")return!P(t,e.slice(1));if(e==="true")return!0;if(e==="false")return!1;if(e==="null")return null;if(e!=="undefined")return Gt.test(e)?Number(e):e.length>=2&&(e[0]==='"'||e[0]==="'")&&e[e.length-1]===e[0]?e.slice(1,-1):Wt(t,e)}function Ft(t){let n=0;for(let e=0;e<t.length-1;e++)if(t[e]==="(")n++;else if(t[e]===")"&&(n--,n===0))return!1;return!0}function Bt(t){let n=0;for(let e=0;e<t.length;e++){const o=t[e];if(o==="["||o==="(")n++;else if(o==="]"||o===")")n--;else if(n===0&&(o==="="||o==="!")&&t[e+1]==="="){if(e>0&&(t[e-1]==="="||t[e-1]==="!")||!t.slice(0,e).trim())continue;const r=t[e+2]==="="?o+"==":o+"=";return{index:e,op:r}}}return null}function Wt(t,n){const e=n.match(et);if(!e)return;let o=t?.[e[0]],r=e[0].length;for(;r<n.length;)if(n[r]==="."){const s=n.slice(r+1).match(et)||n.slice(r+1).match(/^\d+/);if(!s)return;o=o?.[s[0]],r+=1+s[0].length}else if(n[r]==="["){let s=1,i=r+1;for(;i<n.length&&s>0;){if(n[i]==="[")s++;else if(n[i]==="]"&&(s--,s===0))break;i++}if(s!==0)return;const a=P(t,n.slice(r+1,i));o=o?.[a],r=i+1}else return;return o}
+function O(t){const n=t.match(/^\s*\{\{([\s\S]+?)\}\}\s*$/);if(n){const e=n[1];return o=>P(o,e)}if(t.includes("{{")){const e=t.split(/\{\{([\s\S]+?)\}\}/g);return o=>e.map((r,s)=>s&1?P(o,r)??"":r).join("")}return()=>t}
+var NS = 'http://www.w3.org/2000/svg';
+var RAW = { 'sc-raw-select': 'select', 'sc-raw-table': 'table', 'sc-raw-tbody': 'tbody', 'sc-raw-thead': 'thead', 'sc-raw-tfoot': 'tfoot', 'sc-raw-tr': 'tr', 'sc-raw-td': 'td', 'sc-raw-th': 'th', 'sc-raw-caption': 'caption' };
+var BOOLS = {}; 'allowFullScreen async autoFocus autoPlay checked controls default defer disabled hidden loop multiple muted open readOnly required selected'.split(' ').forEach(function (k) { BOOLS[k.toLowerCase()] = 1; });
+function camel(s) { return s.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); }); }
+function flat(out, x) { if (Array.isArray(x)) { for (var i = 0; i < x.length; i++) flat(out, x[i]); } else if (x != null) out.push(x); return out; }
+
+function compileKids(parent, svg) {
+  var fns = [];
+  for (var n = parent.firstChild; n; n = n.nextSibling) { var f = compileNode(n, svg); if (f) fns.push(f); }
+  return function (ctx) { var out = []; for (var i = 0; i < fns.length; i++) flat(out, fns[i](ctx)); return out; };
+}
+function compileText(n) {
+  var s = n.nodeValue || '';
+  if (s.indexOf('{{') < 0) return (!s.trim() && s.indexOf(' ') < 0) ? null : function () { return s; };
+  var parts = s.split(/\{\{([\s\S]+?)\}\}/g);
+  return function (ctx) {
+    var r = '';
+    for (var i = 0; i < parts.length; i++) {
+      if (i & 1) { var v = P(ctx, parts[i]); r += (v == null || typeof v === 'boolean') ? '' : String(v); } else r += parts[i];
+    }
+    return r === '' ? null : r;
+  };
+}
+function compileNode(n, svg) {
+  if (n.nodeType === 3) return compileText(n);
+  if (n.nodeType !== 1) return null;
+  var tag = n.localName;
+  if (tag === 'sc-helmet') {
+    for (var c = n.firstChild; c; c = c.nextSibling) { if (c.nodeType === 1 && (c.localName === 'style' || c.localName === 'link')) document.head.appendChild(c.cloneNode(true)); }
+    return null;
+  }
+  if (tag === 'sc-for') {
+    var lst = O(n.getAttribute('list') || ''), as = n.getAttribute('as') || 'item', kids = compileKids(n, svg);
+    return function (ctx) {
+      var arr = lst(ctx); if (!Array.isArray(arr)) return [];
+      var out = [];
+      for (var i = 0; i < arr.length; i++) { var c2 = Object.assign({}, ctx); c2[as] = arr[i]; c2.$index = i; flat(out, kids(c2)); }
+      return out;
+    };
+  }
+  if (tag === 'sc-if') {
+    var cond = O(n.getAttribute('value') || ''), k2 = compileKids(n, svg);
+    return function (ctx) { return cond(ctx) ? k2(ctx) : []; };
+  }
+  var real = RAW[tag] || tag, isSvg = svg || real === 'svg';
+  var attrs = [];
+  for (var i = 0; i < n.attributes.length; i++) {
+    var nm = n.attributes[i].name, v = n.attributes[i].value;
+    if (nm === 'sc-name' || nm === 'data-dc-tpl' || nm === 'hint-size') continue;
+    if (nm.indexOf('sc-camel-') === 0) nm = camel(nm.slice(9));
+    if (v === '' && BOOLS[nm.toLowerCase()]) { attrs.push([nm, function () { return true; }]); continue; }
+    attrs.push([nm, O(v)]);
+  }
+  var ck = compileKids(n, isSvg);
+  return function (ctx) {
+    var a = {}, ev = {};
+    for (var i = 0; i < attrs.length; i++) {
+      var name = attrs[i][0], val = attrs[i][1](ctx);
+      if (name.length > 2 && name.indexOf('on') === 0 && name[2] === name[2].toUpperCase() && name[2] !== name[2].toLowerCase()) ev[name.slice(2).toLowerCase()] = val;
+      else a[name] = val;
+    }
+    return { t: real, svg: isSvg, a: a, ev: ev, c: ck(ctx) };
+  };
+}
+
+function setAttrs(el, v) {
+  var st = el.__v, prev = st.a, a = v.a, name;
+  for (name in prev) if (!(name in a) && name !== 'value' && name !== 'checked') { el.removeAttribute(name === 'className' ? 'class' : name); }
+  var tag = el.localName, formCtl = tag === 'input' || tag === 'textarea' || tag === 'select';
+  for (name in a) {
+    var val = a[name];
+    if (name === 'style') { var s = val == null ? '' : String(val); if (prev.style !== s) el.style.cssText = s; continue; }
+    if (name === 'value' && formCtl) continue;
+    if (name === 'checked') continue;
+    if (name.indexOf('aria-') === 0 || name.indexOf('data-') === 0) { if (val == null) el.removeAttribute(name); else if (prev[name] !== val) el.setAttribute(name, String(val)); continue; }
+    if (val == null || val === false) { if (name in prev) el.removeAttribute(name); continue; }
+    var sv = val === true ? '' : String(val);
+    if (el.getAttribute(name) !== sv) el.setAttribute(name, sv);
+  }
+  st.a = a;
+  var ev = v.ev;
+  for (var e in ev) {
+    if (!st.h.hasOwnProperty(e)) {
+      (function (en) {
+        var dom = en;
+        if (en === 'change' && ((tag === 'input' && el.type !== 'checkbox' && el.type !== 'radio' && el.type !== 'file') || tag === 'textarea')) dom = 'input';
+        el.addEventListener(dom, function (x) { var f = el.__v.h[en]; if (typeof f === 'function') f(x); });
+      })(e);
+    }
+    st.h[e] = ev[e];
+  }
+  for (var h in st.h) if (!(h in ev)) st.h[h] = undefined;
+}
+function post(el, v) {
+  var tag = el.localName, a = v.a;
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+    if ('value' in a && !(tag === 'input' && el.type === 'file')) { var val = a.value == null ? '' : String(a.value); if (el.value !== val) el.value = val; }
+    if ('checked' in a) el.checked = !!a.checked;
+  }
+}
+function create(v) {
+  if (typeof v === 'string') return document.createTextNode(v);
+  var el = v.svg ? document.createElementNS(NS, v.t) : document.createElement(v.t);
+  el.__v = { a: {}, h: {} };
+  setAttrs(el, v); kids(el, v.c); post(el, v);
+  return el;
+}
+function kids(par, list) {
+  for (var i = 0; i < list.length; i++) {
+    var k = list[i], d = par.childNodes[i];
+    if (!d) { par.appendChild(create(k)); continue; }
+    if (typeof k === 'string') { if (d.nodeType === 3) { if (d.nodeValue !== k) d.nodeValue = k; } else par.replaceChild(create(k), d); continue; }
+    if (d.nodeType !== 1 || d.localName !== k.t || !d.__v) { par.replaceChild(create(k), d); continue; }
+    setAttrs(d, k); kids(d, k.c); post(d, k);
+  }
+  while (par.childNodes.length > list.length) par.removeChild(par.lastChild);
+}
+
+function DCLogic(props) { this.props = props || {}; this.state = {}; }
+var pending = false, cbs = [], logic = null, rootFn = null, app = null;
+function render() {
+  if (!logic) return;
+  var vars = logic.renderVals() || {};
+  var vn = rootFn(vars);
+  var active = document.activeElement, sel = null;
+  kids(app, vn);
+}
+function flush() {
+  pending = false; render();
+  var c = cbs; cbs = []; c.forEach(function (f) { try { f(); } catch (e) { console.error(e); } });
+  try { logic.componentDidUpdate(); } catch (e) { console.error(e); }
+}
+function schedule(cb) { if (cb) cbs.push(cb); if (!pending) { pending = true; Promise.resolve().then(flush); } }
+DCLogic.prototype.setState = function (p, cb) { var u = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, u); schedule(cb); };
+DCLogic.prototype.forceUpdate = function () { schedule(); };
+DCLogic.prototype.componentDidMount = function () {};
+DCLogic.prototype.componentDidUpdate = function () {};
+DCLogic.prototype.componentWillUnmount = function () {};
+DCLogic.prototype.renderVals = function () { return {}; };
+
+function boot() {
+  var src = document.getElementById('tpl').textContent;
+  src = src.replace(/<helmet(\s|>)/gi, '<sc-helmet$1').replace(/<\/helmet\s*>/gi, '</sc-helmet>');
+  Object.keys(RAW).forEach(function (k) { src = src.replace(new RegExp('(</?)' + RAW[k] + '(?=[\\s>])', 'gi'), '$1' + k); });
+  var t = document.createElement('template'); t.innerHTML = src;
+  rootFn = compileKids(t.content, false);
+  app = document.getElementById('app');
+  var Logic = window.__DC_LOGIC(DCLogic, DCLogic, {});
+  logic = new Logic({}); 
+  render();
+  try { logic.componentDidMount(); } catch (e) { console.error(e); }
+}
+try { boot(); } catch (e) { console.error(e); var d = document.createElement('pre'); d.textContent = 'Erro ao iniciar o site: ' + e.message; document.body.appendChild(d); }
+})();
+</script>
